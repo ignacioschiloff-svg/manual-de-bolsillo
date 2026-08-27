@@ -1,0 +1,722 @@
+<title>Manual de Bolsillo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root {
+  --ground:      #FAF8FB;
+  --surface:     #FFFFFF;
+  --surface-alt: #F3EFF7;
+  --ink:         #231D2B;
+  --ink-soft:    #4B4356;
+  --muted:       #6E6579;
+  --line:        #E6DFEC;
+  --line-soft:   #F0EAF4;
+
+  --violet:      #6B3FA0;
+  --violet-bg:   #F0E9F8;
+  --safranin:    #C0355F;
+  --safranin-bg: #FBE8EE;
+  --slate:       #35646F;
+  --slate-bg:    #E4EFF1;
+
+  --h-top: 58px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:      #15121A;
+    --surface:     #1D1924;
+    --surface-alt: #262032;
+    --ink:         #EBE5F1;
+    --ink-soft:    #C6BED2;
+    --muted:       #948BA1;
+    --line:        #322B3D;
+    --line-soft:   #272130;
+
+    --violet:      #B491E4;
+    --violet-bg:   #2A1F3C;
+    --safranin:    #F08BAB;
+    --safranin-bg: #3A1F2B;
+    --slate:       #7FBAC7;
+    --slate-bg:    #1B2E33;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground:      #15121A;
+  --surface:     #1D1924;
+  --surface-alt: #262032;
+  --ink:         #EBE5F1;
+  --ink-soft:    #C6BED2;
+  --muted:       #948BA1;
+  --line:        #322B3D;
+  --line-soft:   #272130;
+
+  --violet:      #B491E4;
+  --violet-bg:   #2A1F3C;
+  --safranin:    #F08BAB;
+  --safranin-bg: #3A1F2B;
+  --slate:       #7FBAC7;
+  --slate-bg:    #1B2E33;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+button { font: inherit; }
+
+/* ================= VISTA LISTA ================= */
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--ground);
+  border-bottom: 1px solid var(--line);
+}
+
+.top-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: Newsreader, Georgia, serif;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+.tally {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.search { position: relative; display: flex; }
+
+.search input {
+  width: 100%;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 38px 10px 13px;
+  outline: none;
+}
+
+.search input::placeholder { color: var(--muted); }
+.search input:focus { border-color: var(--violet); box-shadow: 0 0 0 3px var(--violet-bg); }
+
+.search .clear {
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  width: 30px; height: 30px; border: 0; background: none;
+  color: var(--muted); font-size: 19px; line-height: 1; cursor: pointer;
+  border-radius: 8px; display: none;
+}
+.search.filled .clear { display: block; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 90px; }
+
+.chips {
+  display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;
+  margin: 18px 0 4px; padding-bottom: 2px;
+}
+.chips::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex: none;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: .04em; text-transform: uppercase;
+  text-decoration: none; color: var(--ink-soft);
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px 11px; white-space: nowrap;
+}
+.chip[data-c="gp"] { color: var(--violet); border-color: var(--violet-bg); background: var(--violet-bg); }
+.chip[data-c="gn"] { color: var(--safranin); border-color: var(--safranin-bg); background: var(--safranin-bg); }
+.chip[data-c="rk"] { color: var(--safranin); }
+
+.parte { margin-top: 28px; scroll-margin-top: 116px; }
+
+.parte-head {
+  display: flex; align-items: baseline; gap: 10px;
+  padding-bottom: 8px; margin-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.parte-head h2 {
+  margin: 0; font-family: Newsreader, Georgia, serif;
+  font-size: 18px; font-weight: 600; color: var(--tone, var(--ink));
+}
+
+.parte-head .count {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums;
+}
+
+.parte[data-c="gp"], .estudio[data-c="gp"] { --tone: var(--violet); --tone-bg: var(--violet-bg); }
+.parte[data-c="gn"], .estudio[data-c="gn"],
+.parte[data-c="rk"], .estudio[data-c="rk"] { --tone: var(--safranin); --tone-bg: var(--safranin-bg); }
+.parte[data-c="vi"], .parte[data-c="pa"],
+.parte[data-c="he"], .parte[data-c="fa"],
+.estudio[data-c="vi"], .estudio[data-c="pa"],
+.estudio[data-c="he"], .estudio[data-c="fa"] { --tone: var(--slate); --tone-bg: var(--slate-bg); }
+
+.temas { display: flex; flex-direction: column; gap: 7px; }
+
+.tema-btn {
+  width: 100%; text-align: left; cursor: pointer;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 11px; padding: 13px 15px;
+  display: flex; align-items: center; gap: 11px; color: inherit;
+}
+.tema-btn:hover { border-color: var(--tone, var(--violet)); }
+.tema-btn:focus-visible { outline: 2px solid var(--tone, var(--violet)); outline-offset: 2px; }
+
+.dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--tone, var(--muted)); }
+.parte[data-c="rk"] .dot { opacity: .5; }
+
+.tema-btn .nombre {
+  flex: 1; font-family: Newsreader, Georgia, serif;
+  font-size: 17px; font-weight: 600; line-height: 1.3; text-wrap: balance;
+}
+
+.tema-btn .n {
+  flex: none; font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums;
+}
+
+.tema-btn .ico {
+  flex: none; font-size: 11px; color: var(--muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* ================= VISTA ESTUDIO ================= */
+
+.estudio { display: none; }
+body.en-estudio .lista-vista { display: none; }
+body.en-estudio .estudio { display: block; }
+
+.est-top {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--ground); border-bottom: 1px solid var(--line);
+  height: var(--h-top);
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 12px;
+}
+
+.volver {
+  flex: none; display: flex; align-items: center; gap: 6px;
+  background: none; border: 0; cursor: pointer;
+  color: var(--tone, var(--violet)); padding: 8px 6px;
+  font-size: 14px; border-radius: 8px;
+}
+.volver:focus-visible { outline: 2px solid var(--tone, var(--violet)); }
+
+.est-titulo {
+  flex: 1; min-width: 0;
+  font-family: Newsreader, Georgia, serif;
+  font-size: 16px; font-weight: 600; line-height: 1.25;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.est-cuenta {
+  flex: none; font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums;
+}
+
+.est-cuerpo { max-width: 1240px; margin: 0 auto; }
+
+/* --- panel de imagen --- */
+
+.panel {
+  position: sticky;
+  top: var(--h-top);
+  z-index: 20;
+  background: var(--ground);
+  border-bottom: 1px solid var(--line);
+  padding: 8px 12px 10px;
+}
+
+.panel-barra {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 7px;
+}
+
+.seg {
+  display: flex; gap: 2px; padding: 2px;
+  background: var(--surface-alt); border-radius: 8px;
+}
+
+.seg button {
+  border: 0; background: none; cursor: pointer;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); padding: 5px 10px; border-radius: 6px;
+}
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--tone, var(--violet)); }
+.seg button:focus-visible { outline: 2px solid var(--tone, var(--violet)); }
+
+.panel-espacio { flex: 1; }
+
+.icon-btn {
+  border: 1px solid var(--line); background: var(--surface); cursor: pointer;
+  color: var(--muted); width: 30px; height: 28px; border-radius: 7px;
+  display: grid; place-items: center; font-size: 13px; line-height: 1;
+}
+.icon-btn:hover { color: var(--tone, var(--violet)); border-color: var(--tone, var(--violet)); }
+.icon-btn:focus-visible { outline: 2px solid var(--tone, var(--violet)); }
+
+.panel-img {
+  display: block; width: 100%;
+  max-height: 48vh; object-fit: contain; object-position: center;
+  background: var(--surface-alt); border-radius: 9px;
+  cursor: zoom-in;
+}
+
+/* en horizontal el alto escasea: la imagen manda y el texto se lee debajo */
+@media (max-height: 520px) and (orientation: landscape) {
+  .panel-img { max-height: 74vh; }
+}
+
+body.panel-oculto .panel-img { display: none; }
+body.panel-oculto .panel { padding-bottom: 8px; }
+
+/* --- fichas --- */
+
+.fichas { padding: 4px 16px 90px; }
+
+.item { padding: 17px 0; border-bottom: 1px solid var(--line-soft); scroll-margin-top: calc(var(--h-top) + 56vh); }
+.item:last-child { border-bottom: 0; }
+
+.item-head { display: flex; gap: 10px; align-items: baseline; margin-bottom: 11px; }
+
+.item-head .num {
+  flex: none; min-width: 26px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px; font-weight: 500; color: var(--tone, var(--violet));
+  font-variant-numeric: tabular-nums; padding-top: 2px;
+}
+
+.item-head .titulo { font-size: 16px; font-weight: 600; line-height: 1.35; text-wrap: balance; }
+
+.paso { padding-left: 36px; margin-bottom: 11px; }
+.paso:last-child { margin-bottom: 0; }
+
+.paso .lbl {
+  display: block; font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 3px;
+}
+.paso .lbl .em { font-family: initial; letter-spacing: 0; margin-right: 4px; }
+
+.paso p { margin: 0 0 5px; color: var(--ink-soft); font-size: 15.5px; }
+.paso p:last-child { margin-bottom: 0; }
+
+.paso.literal {
+  background: var(--surface-alt); border-radius: 9px;
+  padding: 11px 13px; margin-left: 36px; margin-top: 13px;
+}
+.paso.literal p {
+  font-family: Newsreader, Georgia, serif; font-style: italic;
+  font-size: 15px; line-height: 1.55; color: var(--ink-soft);
+}
+
+/* --- lado a lado en pantalla ancha --- */
+
+@media (min-width: 950px) {
+  .est-cuerpo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 460px;
+    gap: 0 28px;
+    align-items: start;
+    padding: 0 20px;
+  }
+  .panel {
+    grid-column: 2; grid-row: 1;
+    position: sticky; top: calc(var(--h-top) + 14px);
+    border-bottom: 0; padding: 14px 0 0;
+    background: none;
+  }
+  .panel-img { max-height: calc(100vh - var(--h-top) - 90px); }
+  .fichas { grid-column: 1; grid-row: 1; padding: 6px 0 100px; }
+  .item { scroll-margin-top: calc(var(--h-top) + 20px); }
+  body.panel-oculto .est-cuerpo { grid-template-columns: minmax(0, 1fr); }
+  body.panel-oculto .panel { grid-column: 1; }
+}
+
+/* ================= BUSQUEDA ================= */
+
+.res-info {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; color: var(--muted); margin: 20px 0 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.res-tema {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--tone, var(--muted)); margin: 22px 0 6px; padding-left: 36px;
+}
+
+.vacio { text-align: center; color: var(--muted); padding: 48px 20px; font-size: 15px; }
+
+mark { background: var(--tone-bg, var(--violet-bg)); color: inherit; border-radius: 2px; padding: 0 1px; }
+
+.pie {
+  margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line);
+  font-size: 13px; color: var(--muted); line-height: 1.65;
+}
+
+/* ================= VISOR ================= */
+
+.visor {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(12, 9, 16, .95);
+  display: none; overflow: auto; overscroll-behavior: contain;
+}
+.visor[data-abierto] { display: block; }
+.visor img { display: block; min-width: 100%; width: 190%; max-width: none; height: auto; margin: 0 auto; }
+
+.visor-cerrar {
+  position: fixed; top: 12px; right: 12px; z-index: 91;
+  width: 40px; height: 40px; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, .18); color: #FFF;
+  font-size: 22px; line-height: 1; cursor: pointer;
+}
+
+.visor-nota {
+  position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 91;
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px;
+  letter-spacing: .06em; color: rgba(255, 255, 255, .65);
+  background: rgba(20, 16, 26, .75); padding: 5px 11px; border-radius: 999px;
+  pointer-events: none;
+}
+</style>
+
+<!-- ---------- LISTA ---------- -->
+<div class="lista-vista">
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">
+        <h1>Manual de Bolsillo</h1>
+        <span class="tally">{{N_TEMAS}} temas · {{N_ITEMS}} elementos</span>
+      </div>
+      <div class="search" id="wrapBuscar">
+        <input id="q" type="search" placeholder="Buscar: catalasa, esporas, doxiciclina…"
+               autocomplete="off" autocorrect="off" spellcheck="false"
+               aria-label="Buscar en todos los temas">
+        <button class="clear" id="limpiar" aria-label="Limpiar búsqueda">×</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="chips" id="chips" aria-label="Ir a una parte"></nav>
+    <div id="indice"></div>
+    <div id="resultados" hidden></div>
+    <p class="pie">
+      Cuatro pasos por elemento: qué se ve → qué significa → cómo lo dice Sketchy → texto literal.
+      El color marca la tinción: violeta cristal para Gram-positivas, rosa safranina para Gram-negativas.
+    </p>
+  </main>
+</div>
+
+<!-- ---------- ESTUDIO ---------- -->
+<div class="estudio" id="estudio">
+  <div class="est-top">
+    <button class="volver" id="volver">← Temas</button>
+    <span class="est-titulo" id="estTitulo"></span>
+    <span class="est-cuenta" id="estCuenta"></span>
+  </div>
+  <div class="est-cuerpo">
+    <div class="panel" id="panel">
+      <div class="panel-barra">
+        <div class="seg" id="seg">
+          <button data-k="mapa" aria-pressed="true">Mapa</button>
+          <button data-k="texto" aria-pressed="false">Texto</button>
+        </div>
+        <span class="panel-espacio"></span>
+        <button class="icon-btn" id="btnZoom" aria-label="Ampliar imagen" title="Ampliar">⤢</button>
+        <button class="icon-btn" id="btnPlegar" aria-label="Ocultar imagen" title="Ocultar imagen">▲</button>
+      </div>
+      <img class="panel-img" id="panelImg" alt="">
+    </div>
+    <div class="fichas" id="fichas"></div>
+  </div>
+</div>
+
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="visor-cerrar" id="visorCerrar" aria-label="Cerrar">×</button>
+  <img id="visorImg" alt="">
+  <span class="visor-nota">Pellizca para acercar · desliza para mover</span>
+</div>
+
+<script>
+const DATOS = /*DATOS*/null;
+
+const PASOS = [
+  ["ver",     "🎨", "Qué se ve"],
+  ["clinica", "💡", "Significado clínico"],
+  ["sketchy", "🧠", "Cómo lo dice Sketchy"],
+  ["literal", "📜", "Texto literal"]
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const plano = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+function resaltar(texto, termino) {
+  const safe = esc(texto);
+  if (!termino) return safe;
+  const base = plano(safe), t = plano(termino);
+  let out = "", i = 0;
+  for (;;) {
+    const k = base.indexOf(t, i);
+    if (k === -1) { out += safe.slice(i); break; }
+    out += safe.slice(i, k) + "<mark>" + safe.slice(k, k + t.length) + "</mark>";
+    i = k + t.length;
+  }
+  return out;
+}
+
+const parrafos = (txt, term) =>
+  txt.split("\n").filter(Boolean).map(l => `<p>${resaltar(l, term)}</p>`).join("");
+
+function pintarItem(item, termino) {
+  const pasos = PASOS.map(([clave, emoji, etiqueta]) => {
+    if (!item[clave]) return "";
+    const cls = clave === "literal" ? "paso literal" : "paso";
+    return `<div class="${cls}"><span class="lbl"><span class="em">${emoji}</span>${etiqueta}</span>${parrafos(item[clave], termino)}</div>`;
+  }).join("");
+  return `<article class="item" id="it-${esc(item.n)}">
+      <div class="item-head"><span class="num">${esc(item.n)}</span><span class="titulo">${resaltar(item.nombre, termino)}</span></div>
+      ${pasos}
+    </article>`;
+}
+
+/* ---------- indice ---------- */
+
+const cont   = document.getElementById("indice");
+const chips  = document.getElementById("chips");
+const porSlug = {};
+
+DATOS.forEach((parte, i) => {
+  const id = "p" + i;
+
+  const a = document.createElement("a");
+  a.className = "chip"; a.href = "#" + id; a.dataset.c = parte.codigo;
+  a.textContent = parte.nombre;
+  chips.appendChild(a);
+
+  const sec = document.createElement("section");
+  sec.className = "parte"; sec.id = id; sec.dataset.c = parte.codigo;
+  const total = parte.temas.reduce((s, t) => s + t.items.length, 0);
+  sec.innerHTML = `<div class="parte-head"><h2>${esc(parte.nombre)}</h2>
+      <span class="count">${parte.temas.length} · ${total} elem.</span></div>
+    <div class="temas"></div>`;
+
+  const lista = sec.querySelector(".temas");
+  parte.temas.forEach(tema => {
+    porSlug[tema.slug] = { tema, parte };
+    const b = document.createElement("button");
+    b.className = "tema-btn";
+    b.innerHTML = `<span class="dot"></span>
+      <span class="nombre">${esc(tema.titulo)}</span>
+      <span class="n">${tema.items.length}</span>
+      <span class="ico">${tema.mapa ? "▦" : ""}</span>`;
+    b.addEventListener("click", () => abrirTema(tema.slug));
+    lista.appendChild(b);
+  });
+
+  cont.appendChild(sec);
+});
+
+/* ---------- vista de estudio ---------- */
+
+const estudio  = document.getElementById("estudio");
+const estTit   = document.getElementById("estTitulo");
+const estCnt   = document.getElementById("estCuenta");
+const fichas   = document.getElementById("fichas");
+const panel    = document.getElementById("panel");
+const panelImg = document.getElementById("panelImg");
+const seg      = document.getElementById("seg");
+
+let temaActual = null;
+let vistaImg = "mapa";
+let scrollLista = 0;
+
+function pintarPanel() {
+  if (!temaActual) return;
+  const hayMapa = !!temaActual.mapa, hayTexto = !!temaActual.texto;
+  const botones = seg.querySelectorAll("button");
+
+  botones[0].style.display = hayMapa ? "" : "none";
+  botones[1].style.display = hayTexto ? "" : "none";
+
+  if (!hayMapa && !hayTexto) { panel.style.display = "none"; return; }
+  panel.style.display = "";
+
+  if (vistaImg === "mapa" && !hayMapa) vistaImg = "texto";
+  if (vistaImg === "texto" && !hayTexto) vistaImg = "mapa";
+
+  botones.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.k === vistaImg)));
+  panelImg.src = temaActual[vistaImg];
+  panelImg.alt = temaActual.titulo + " — " + (vistaImg === "mapa" ? "mapa numerado" : "hoja de texto");
+}
+
+function abrirTema(slug) {
+  const reg = porSlug[slug];
+  if (!reg) return;
+  scrollLista = window.scrollY;
+  temaActual = reg.tema;
+  vistaImg = reg.tema.mapa ? "mapa" : "texto";
+
+  estudio.dataset.c = reg.parte.codigo;
+  estTit.textContent = reg.tema.titulo;
+  estCnt.textContent = reg.tema.items.length;
+  fichas.innerHTML = reg.tema.items.map(it => pintarItem(it, "")).join("");
+  pintarPanel();
+
+  document.body.classList.add("en-estudio");
+  document.body.classList.remove("panel-oculto");
+  window.scrollTo(0, 0);
+  history.pushState({ slug }, "", "#" + slug);
+}
+
+function cerrarTema() {
+  document.body.classList.remove("en-estudio");
+  temaActual = null;
+  window.scrollTo(0, scrollLista);
+}
+
+document.getElementById("volver").addEventListener("click", () => { history.back(); });
+
+window.addEventListener("popstate", ev => {
+  if (ev.state && ev.state.slug) abrirTema(ev.state.slug);
+  else cerrarTema();
+});
+
+seg.addEventListener("click", ev => {
+  const b = ev.target.closest("button");
+  if (!b) return;
+  vistaImg = b.dataset.k;
+  pintarPanel();
+});
+
+document.getElementById("btnPlegar").addEventListener("click", ev => {
+  const oculto = document.body.classList.toggle("panel-oculto");
+  ev.currentTarget.textContent = oculto ? "▼" : "▲";
+  ev.currentTarget.title = oculto ? "Mostrar imagen" : "Ocultar imagen";
+});
+
+/* ---------- visor ---------- */
+
+const visor = document.getElementById("visor");
+const visorImg = document.getElementById("visorImg");
+
+function abrirVisor(src, alt) {
+  if (!src) return;
+  visorImg.src = src; visorImg.alt = alt || "";
+  visor.setAttribute("data-abierto", "");
+  document.body.style.overflow = "hidden";
+  visor.scrollTop = 0;
+  visor.scrollLeft = (visor.scrollWidth - visor.clientWidth) / 2;
+}
+function cerrarVisor() {
+  visor.removeAttribute("data-abierto");
+  visorImg.src = "";
+  document.body.style.overflow = "";
+}
+
+panelImg.addEventListener("click", () => abrirVisor(panelImg.src, panelImg.alt));
+document.getElementById("btnZoom").addEventListener("click", () => abrirVisor(panelImg.src, panelImg.alt));
+visor.addEventListener("click", ev => {
+  if (ev.target === visor || ev.target.id === "visorCerrar") cerrarVisor();
+});
+document.addEventListener("keydown", ev => {
+  if (ev.key === "Escape") {
+    if (visor.hasAttribute("data-abierto")) cerrarVisor();
+    else if (document.body.classList.contains("en-estudio")) history.back();
+  }
+});
+
+/* ---------- busqueda ---------- */
+
+const campo  = document.getElementById("q");
+const caja   = document.getElementById("wrapBuscar");
+const salida = document.getElementById("resultados");
+
+const INDEX = [];
+DATOS.forEach(parte => parte.temas.forEach(tema => tema.items.forEach(item => {
+  INDEX.push({ parte, tema, item,
+    texto: plano([tema.titulo, item.n, item.nombre, item.ver, item.clinica, item.sketchy, item.literal].join(" ")) });
+})));
+
+let pendiente;
+
+function buscar() {
+  const termino = campo.value.trim();
+  caja.classList.toggle("filled", termino.length > 0);
+
+  if (termino.length < 2) {
+    salida.hidden = true; salida.innerHTML = "";
+    cont.hidden = false; chips.hidden = false;
+    return;
+  }
+
+  const t = plano(termino);
+  const hits = INDEX.filter(e => e.texto.includes(t));
+  cont.hidden = true; chips.hidden = true; salida.hidden = false;
+
+  if (!hits.length) {
+    salida.innerHTML = `<p class="vacio">Sin resultados para “${esc(termino)}”.</p>`;
+    return;
+  }
+
+  let html = `<p class="res-info">${hits.length} ${hits.length === 1 ? "elemento" : "elementos"} · ${new Set(hits.map(h => h.tema.slug)).size} temas</p>`;
+  let actual = null;
+  hits.slice(0, 200).forEach(h => {
+    if (h.tema.slug !== actual) {
+      actual = h.tema.slug;
+      html += `<div class="parte" data-c="${h.parte.codigo}"><p class="res-tema">${esc(h.tema.titulo)}</p></div>`;
+    }
+    html += `<div class="parte" data-c="${h.parte.codigo}">${pintarItem(h.item, termino)}</div>`;
+  });
+  if (hits.length > 200) html += `<p class="vacio">…y ${hits.length - 200} más. Afina la búsqueda.</p>`;
+
+  salida.innerHTML = html;
+  window.scrollTo({ top: 0 });
+}
+
+campo.addEventListener("input", () => { clearTimeout(pendiente); pendiente = setTimeout(buscar, 120); });
+document.getElementById("limpiar").addEventListener("click", () => { campo.value = ""; campo.focus(); buscar(); });
+
+/* abrir directo si la URL trae un tema */
+const inicial = decodeURIComponent(location.hash.slice(1));
+if (inicial && porSlug[inicial]) abrirTema(inicial);
+</script>
