@@ -39,6 +39,10 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Yersinia enterocolitica & pestis | [ver](02-gram-negativas/yersinia.md) |
 | Vibrio spp. | [ver](02-gram-negativas/vibrio.md) |
 | Campylobacter jejuni | [ver](02-gram-negativas/campylobacter-jejuni.md) |
+| Neisseria gonorrhoeae | [ver](02-gram-negativas/neisseria-gonorrhoeae.md) |
+| Borrelia recurrentis | [ver](02-gram-negativas/borrelia-recurrentis.md) |
+| Borrelia burgdorferi | [ver](02-gram-negativas/borrelia-burgdorferi.md) |
+| Leptospira interrogans | [ver](02-gram-negativas/leptospira-interrogans.md) |
 
 ## Parte 3 — Rickettsias
 
@@ -62,23 +66,67 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Tumores hepáticos y carcinoma hepatocelular | [ver](05-patologia-gi/tumores-hepaticos-hcc.md) |
 | Tumor carcinoide y neoplasias de intestino delgado | [ver](05-patologia-gi/carcinoide-intestino-delgado.md) |
 | Pólipos colorrectales y cáncer | [ver](05-patologia-gi/polipos-colorrectales-cancer.md) |
+| Enfermedad de Crohn y colitis ulcerosa | [ver](05-patologia-gi/crohn-colitis-ulcerosa.md) |
+| Enfermedad hepática grasa alcohólica y no alcohólica | [ver](05-patologia-gi/higado-graso-alcoholico-no-alcoholico.md) |
+| Trastornos GI congénitos | [ver](05-patologia-gi/trastornos-gi-congenitos.md) |
+| Enfermedad celíaca y malabsorción | [ver](05-patologia-gi/enfermedad-celiaca-malabsorcion.md) |
+| Cirrosis: patogénesis y manifestaciones | [ver](05-patologia-gi/cirrosis-patogenesis-manifestaciones.md) |
+| Dismotilidad y cáncer esofágico | [ver](05-patologia-gi/dismotilidad-cancer-esofagico.md) |
+| Dismotilidad y cáncer gástrico | [ver](05-patologia-gi/dismotilidad-cancer-gastrico.md) |
 
 ## Parte 6 — Hematología
 
 | Tema | Archivo |
 |---|---|
 | Policitemia | [ver](06-hematologia/policitemia.md) |
+| Defectos de coagulación adquiridos | [ver](06-hematologia/defectos-coagulacion-adquiridos.md) |
+| Linfoma no-Hodgkin | [ver](06-hematologia/linfoma-no-hodgkin.md) |
 
 ## Parte 7 — Farmacología
 
 | Tema | Archivo |
 |---|---|
 | Antagonistas muscarínicos | [ver](07-farmacologia/antagonistas-muscarinicos.md) |
+| Inhibidores de la acetilcolinesterasa | [ver](07-farmacologia/inhibidores-acetilcolinesterasa.md) |
+| Ampicilina, amoxicilina, piperacilina, ticarcilina | [ver](07-farmacologia/aminopenicilinas-penicilinas-espectro-extendido.md) |
 | Antieméticos | [ver](07-farmacologia/antiemeticos.md) |
 | Anticuerpos monoclonales | [ver](07-farmacologia/anticuerpos-monoclonales.md) |
 | Macrólidos | [ver](07-farmacologia/macrolidos.md) |
 | Vancomicina | [ver](07-farmacologia/vancomicina.md) |
 | Laxantes y antidiarreicos | [ver](07-farmacologia/laxantes-antidiarreicos.md) |
+| Cloranfenicol | [ver](07-farmacologia/cloranfenicol.md) |
+
+## Parte 8 — Neurología
+
+| Tema | Archivo |
+|---|---|
+| Nervios craneales I y II (Olfatorio y Óptico) | [ver](08-neurologia/nervios-craneales-i-ii.md) |
+| Creutzfeldt-Jakob, Parkinson y Huntington | [ver](08-neurologia/enfermedad-cjd-parkinson-huntington.md) |
+| Hidrocefalia | [ver](08-neurologia/hidrocefalia.md) |
+
+## Parte 9 — Neumología
+
+| Tema | Archivo |
+|---|---|
+| Síndrome de dificultad respiratoria aguda (ARDS) | [ver](09-neumologia/sindrome-dificultad-respiratoria-aguda.md) |
+
+## Parte 10 — Inmunología
+
+| Tema | Archivo |
+|---|---|
+| Trastornos combinados de células B y T | [ver](10-inmunologia/trastornos-combinados-celulas-b-t.md) |
+
+## Parte 11 — Ginecología
+
+| Tema | Archivo |
+|---|---|
+| Tumores ováricos (germinales y estromales) | [ver](11-ginecologia/tumores-ovaricos-germinales-estromales.md) |
+
+## Parte 12 — Parasitología
+
+| Tema | Archivo |
+|---|---|
+| Entamoeba histolytica | [ver](12-parasitologia/entamoeba-histolytica.md) |
 
 ---
 

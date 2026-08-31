@@ -37,6 +37,11 @@ PARTES = [
     ("05-patologia-gi", "Patología GI", "pa"),
     ("06-hematologia", "Hematología", "he"),
     ("07-farmacologia", "Farmacología", "fa"),
+    ("08-neurologia", "Neurología", "ne"),
+    ("09-neumologia", "Neumología", "nu"),
+    ("10-inmunologia", "Inmunología", "im"),
+    ("11-ginecologia", "Ginecología", "gi"),
+    ("12-parasitologia", "Parasitología", "pr"),
 ]
 
 PASOS = [("🎨", "ver"), ("💡", "clinica"), ("🧠", "sketchy"), ("📜", "literal")]
