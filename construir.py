@@ -66,8 +66,15 @@ def buscar_imagen(slug, sufijo):
     return None
 
 
-def cargar_imagen(ruta):
+try:
     from PIL import Image
+except ImportError:
+    Image = None
+
+
+def cargar_imagen(ruta):
+    if Image is None:
+        raise ImportError("Pillow no esta instalado")
     img = Image.open(ruta)
     if img.mode not in ("RGB", "L"):
         img = img.convert("RGB")

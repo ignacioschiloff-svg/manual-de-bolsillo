@@ -73,6 +73,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Cirrosis: patogénesis y manifestaciones | [ver](05-patologia-gi/cirrosis-patogenesis-manifestaciones.md) |
 | Dismotilidad y cáncer esofágico | [ver](05-patologia-gi/dismotilidad-cancer-esofagico.md) |
 | Dismotilidad y cáncer gástrico | [ver](05-patologia-gi/dismotilidad-cancer-gastrico.md) |
+| Gastritis aguda y crónica, y enfermedad ulcerosa péptica | [ver](05-patologia-gi/gastritis-peptica.md) |
 
 ## Parte 6 — Hematología
 
