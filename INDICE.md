@@ -76,6 +76,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Dismotilidad y cáncer gástrico | [ver](05-patologia-gi/dismotilidad-cancer-gastrico.md) |
 | Gastritis aguda y crónica, y enfermedad ulcerosa péptica | [ver](05-patologia-gi/gastritis-peptica.md) |
 | Trastornos de intestino grueso y apéndice | [ver](05-patologia-gi/intestino-grueso-apendice.md) |
+| Trastornos autoinmunes de la vía biliar y cáncer | [ver](05-patologia-gi/trastornos-autoinmunes-via-biliar.md) |
 
 ## Parte 6 — Hematología
 
@@ -102,6 +103,11 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Fluoroquinolonas | [ver](07-farmacologia/fluoroquinolonas.md) |
 | Cefalosporinas | [ver](07-farmacologia/cefalosporinas.md) |
 | Aminoglucósidos | [ver](07-farmacologia/aminoglucosidos.md) |
+| Linezolid | [ver](07-farmacologia/linezolid.md) |
+| Clindamicina | [ver](07-farmacologia/clindamicina.md) |
+| Tetraciclinas | [ver](07-farmacologia/tetraciclinas.md) |
+| Fármacos antituberculosos (RIPE) | [ver](07-farmacologia/farmacos-antituberculosos.md) |
+| Bloqueadores H2 e inhibidores de bomba de protones | [ver](07-farmacologia/bloqueadores-h2-ppi.md) |
 
 ## Parte 8 — Neurología
 
@@ -138,6 +144,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Tema | Archivo |
 |---|---|
 | Entamoeba histolytica | [ver](12-parasitologia/entamoeba-histolytica.md) |
+| Trypanosoma cruzi (enfermedad de Chagas) | [ver](12-parasitologia/trypanosoma-cruzi-chagas.md) |
 
 ## Parte 13 — Micología
 
