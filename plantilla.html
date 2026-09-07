@@ -14,12 +14,25 @@
   --line:        #E6DFEC;
   --line-soft:   #F0EAF4;
 
+  /* violeta cristal para Gram-positivas: se mantiene como color "por defecto" */
   --violet:      #6B3FA0;
   --violet-bg:   #F0E9F8;
-  --safranin:    #C0355F;
-  --safranin-bg: #FBE8EE;
-  --slate:       #35646F;
-  --slate-bg:    #E4EFF1;
+
+  /* paleta por Parte — una tinta distinta por area para que cada seccion
+     del manual se sienta a color, no solo bacterias gram +/- */
+  --c-gp: #6B3FA0; --c-gp-bg: #F0E9F8; /* Gram-positivas: violeta cristal */
+  --c-gn: #C0355F; --c-gn-bg: #FBE8EE; /* Gram-negativas: rosa safranina */
+  --c-rk: #A9552B; --c-rk-bg: #F8EBE1; /* Rickettsias: terracota (vector/garrapata) */
+  --c-vi: #16856F; --c-vi-bg: #DFF3EE; /* Virus: verde azulado */
+  --c-pa: #A66A16; --c-pa-bg: #F8EEDC; /* Patologia GI: ambar */
+  --c-he: #B23A3A; --c-he-bg: #FBEAEA; /* Hematologia: rojo */
+  --c-fa: #3160B8; --c-fa-bg: #E7EDFB; /* Farmacologia: azul */
+  --c-ne: #5750B0; --c-ne-bg: #ECEAF8; /* Neurologia: indigo */
+  --c-nu: #1F80A6; --c-nu-bg: #E1F1F7; /* Neumologia: celeste */
+  --c-im: #3F8A4C; --c-im-bg: #E6F3E8; /* Inmunologia: verde */
+  --c-gi: #9B3F94; --c-gi-bg: #F6E9F5; /* Ginecologia: orquidea */
+  --c-pr: #757A1E; --c-pr-bg: #F1F2DB; /* Parasitologia: oliva */
+  --c-mi: #93791A; --c-mi-bg: #F5F0DA; /* Micologia: mostaza */
 
   --h-top: 58px;
 }
@@ -37,10 +50,20 @@
 
     --violet:      #B491E4;
     --violet-bg:   #2A1F3C;
-    --safranin:    #F08BAB;
-    --safranin-bg: #3A1F2B;
-    --slate:       #7FBAC7;
-    --slate-bg:    #1B2E33;
+
+    --c-gp: #B491E4; --c-gp-bg: #2A1F3C;
+    --c-gn: #F08BAB; --c-gn-bg: #3A1F2B;
+    --c-rk: #E3A87E; --c-rk-bg: #362619;
+    --c-vi: #7FD1BC; --c-vi-bg: #16302A;
+    --c-pa: #E0B063; --c-pa-bg: #362A18;
+    --c-he: #E9968F; --c-he-bg: #3A211E;
+    --c-fa: #93B2E8; --c-fa-bg: #1B2740;
+    --c-ne: #ADA6E8; --c-ne-bg: #262340;
+    --c-nu: #7FC7E0; --c-nu-bg: #172B33;
+    --c-im: #8FCB9B; --c-im-bg: #1D2E20;
+    --c-gi: #D79ED1; --c-gi-bg: #34213A;
+    --c-pr: #C6CB6E; --c-pr-bg: #2E3016;
+    --c-mi: #D6BE66; --c-mi-bg: #322D17;
   }
 }
 
@@ -56,11 +79,23 @@
 
   --violet:      #B491E4;
   --violet-bg:   #2A1F3C;
-  --safranin:    #F08BAB;
-  --safranin-bg: #3A1F2B;
-  --slate:       #7FBAC7;
-  --slate-bg:    #1B2E33;
+
+  --c-gp: #B491E4; --c-gp-bg: #2A1F3C;
+  --c-gn: #F08BAB; --c-gn-bg: #3A1F2B;
+  --c-rk: #E3A87E; --c-rk-bg: #362619;
+  --c-vi: #7FD1BC; --c-vi-bg: #16302A;
+  --c-pa: #E0B063; --c-pa-bg: #362A18;
+  --c-he: #E9968F; --c-he-bg: #3A211E;
+  --c-fa: #93B2E8; --c-fa-bg: #1B2740;
+  --c-ne: #ADA6E8; --c-ne-bg: #262340;
+  --c-nu: #7FC7E0; --c-nu-bg: #172B33;
+  --c-im: #8FCB9B; --c-im-bg: #1D2E20;
+  --c-gi: #D79ED1; --c-gi-bg: #34213A;
+  --c-pr: #C6CB6E; --c-pr-bg: #2E3016;
+  --c-mi: #D6BE66; --c-mi-bg: #322D17;
 }
+
+html { scroll-behavior: smooth; }
 
 * { box-sizing: border-box; }
 
@@ -108,6 +143,9 @@ button { font: inherit; }
   font-size: 21px;
   font-weight: 600;
   letter-spacing: -.01em;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--c-gp), var(--c-gn) 35%, var(--c-fa) 68%, var(--c-vi));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
 .tally {
@@ -129,10 +167,13 @@ button { font: inherit; }
   border-radius: 10px;
   padding: 10px 38px 10px 13px;
   outline: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  transition: border-color .12s ease, box-shadow .12s ease;
 }
 
 .search input::placeholder { color: var(--muted); }
 .search input:focus { border-color: var(--violet); box-shadow: 0 0 0 3px var(--violet-bg); }
+.search input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
 
 .search .clear {
   position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
@@ -149,30 +190,40 @@ button { font: inherit; }
   margin: 18px 0 4px; padding-bottom: 2px;
 }
 .chips::-webkit-scrollbar { display: none; }
+/* [hidden] pierde contra ".chips{display:flex}" por especificidad de origen
+   de autor vs. la hoja del navegador — sin esto la fila de chips se queda
+   visible encima de los resultados de busqueda */
+.chips[hidden] { display: none; }
 
 .chip {
   flex: none;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 11px; letter-spacing: .04em; text-transform: uppercase;
-  text-decoration: none; color: var(--ink-soft);
-  background: var(--surface); border: 1px solid var(--line);
+  text-decoration: none; color: var(--tone, var(--ink-soft));
+  background: var(--tone-bg, var(--surface)); border: 1px solid var(--tone-bg, var(--line));
   border-radius: 999px; padding: 6px 11px; white-space: nowrap;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
 }
-.chip[data-c="gp"] { color: var(--violet); border-color: var(--violet-bg); background: var(--violet-bg); }
-.chip[data-c="gn"] { color: var(--safranin); border-color: var(--safranin-bg); background: var(--safranin-bg); }
-.chip[data-c="rk"] { color: var(--safranin); }
+.chip:hover { border-color: var(--tone, var(--line)); transform: translateY(-1px); }
+.chip:active { transform: translateY(0); }
+.chip:focus-visible { outline: 2px solid var(--tone, var(--violet)); outline-offset: 1px; }
 
 .parte { margin-top: 28px; scroll-margin-top: 116px; }
 
 .parte-head {
   display: flex; align-items: baseline; gap: 10px;
   padding-bottom: 8px; margin-bottom: 10px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 2px solid var(--tone-bg, var(--line));
 }
 
 .parte-head h2 {
   margin: 0; font-family: Newsreader, Georgia, serif;
   font-size: 18px; font-weight: 600; color: var(--tone, var(--ink));
+}
+.parte-head h2::before {
+  content: ""; display: inline-block; width: 9px; height: 9px;
+  margin-right: 8px; border-radius: 3px; background: var(--tone, var(--ink));
+  vertical-align: middle;
 }
 
 .parte-head .count {
@@ -180,29 +231,43 @@ button { font: inherit; }
   font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums;
 }
 
-.parte[data-c="gp"], .estudio[data-c="gp"] { --tone: var(--violet); --tone-bg: var(--violet-bg); }
-.parte[data-c="gn"], .estudio[data-c="gn"],
-.parte[data-c="rk"], .estudio[data-c="rk"] { --tone: var(--safranin); --tone-bg: var(--safranin-bg); }
-.parte[data-c="vi"], .parte[data-c="pa"], .parte[data-c="he"],
-.parte[data-c="fa"], .parte[data-c="ne"], .parte[data-c="nu"],
-.parte[data-c="im"], .parte[data-c="gi"], .parte[data-c="pr"], .parte[data-c="mi"],
-.estudio[data-c="vi"], .estudio[data-c="pa"], .estudio[data-c="he"],
-.estudio[data-c="fa"], .estudio[data-c="ne"], .estudio[data-c="nu"],
-.estudio[data-c="im"], .estudio[data-c="gi"], .estudio[data-c="pr"], .estudio[data-c="mi"] { --tone: var(--slate); --tone-bg: var(--slate-bg); }
+/* cada Parte tiene su propio color: se aplica igual a la seccion de la
+   lista (.parte), a la vista de estudio (.estudio) y al chip de navegacion
+   (.chip), asi ya no hace falta acordarse de listar cada codigo nuevo en
+   tres lugares distintos cuando se agrega una Parte */
+.parte[data-c="gp"], .estudio[data-c="gp"], .chip[data-c="gp"] { --tone: var(--c-gp); --tone-bg: var(--c-gp-bg); }
+.parte[data-c="gn"], .estudio[data-c="gn"], .chip[data-c="gn"] { --tone: var(--c-gn); --tone-bg: var(--c-gn-bg); }
+.parte[data-c="rk"], .estudio[data-c="rk"], .chip[data-c="rk"] { --tone: var(--c-rk); --tone-bg: var(--c-rk-bg); }
+.parte[data-c="vi"], .estudio[data-c="vi"], .chip[data-c="vi"] { --tone: var(--c-vi); --tone-bg: var(--c-vi-bg); }
+.parte[data-c="pa"], .estudio[data-c="pa"], .chip[data-c="pa"] { --tone: var(--c-pa); --tone-bg: var(--c-pa-bg); }
+.parte[data-c="he"], .estudio[data-c="he"], .chip[data-c="he"] { --tone: var(--c-he); --tone-bg: var(--c-he-bg); }
+.parte[data-c="fa"], .estudio[data-c="fa"], .chip[data-c="fa"] { --tone: var(--c-fa); --tone-bg: var(--c-fa-bg); }
+.parte[data-c="ne"], .estudio[data-c="ne"], .chip[data-c="ne"] { --tone: var(--c-ne); --tone-bg: var(--c-ne-bg); }
+.parte[data-c="nu"], .estudio[data-c="nu"], .chip[data-c="nu"] { --tone: var(--c-nu); --tone-bg: var(--c-nu-bg); }
+.parte[data-c="im"], .estudio[data-c="im"], .chip[data-c="im"] { --tone: var(--c-im); --tone-bg: var(--c-im-bg); }
+.parte[data-c="gi"], .estudio[data-c="gi"], .chip[data-c="gi"] { --tone: var(--c-gi); --tone-bg: var(--c-gi-bg); }
+.parte[data-c="pr"], .estudio[data-c="pr"], .chip[data-c="pr"] { --tone: var(--c-pr); --tone-bg: var(--c-pr-bg); }
+.parte[data-c="mi"], .estudio[data-c="mi"], .chip[data-c="mi"] { --tone: var(--c-mi); --tone-bg: var(--c-mi-bg); }
 
 .temas { display: flex; flex-direction: column; gap: 7px; }
 
 .tema-btn {
   width: 100%; text-align: left; cursor: pointer;
   background: var(--surface); border: 1px solid var(--line);
-  border-radius: 11px; padding: 13px 15px;
+  border-radius: 12px; padding: 13px 15px;
   display: flex; align-items: center; gap: 11px; color: inherit;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
 }
-.tema-btn:hover { border-color: var(--tone, var(--violet)); }
+.tema-btn:hover {
+  border-color: var(--tone, var(--violet));
+  background: var(--tone-bg, var(--surface));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px -6px color-mix(in srgb, var(--tone, var(--violet)) 45%, transparent);
+}
+.tema-btn:active { transform: translateY(0); }
 .tema-btn:focus-visible { outline: 2px solid var(--tone, var(--violet)); outline-offset: 2px; }
 
-.dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--tone, var(--muted)); }
-.parte[data-c="rk"] .dot { opacity: .5; }
+.dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--tone, var(--muted)); }
 
 .tema-btn .nombre {
   flex: 1; font-family: Newsreader, Georgia, serif;
@@ -381,10 +446,14 @@ body.panel-oculto .panel { padding-bottom: 8px; }
 }
 
 .res-tema {
+  display: block; width: 100%; text-align: left;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 10px; letter-spacing: .07em; text-transform: uppercase;
-  color: var(--tone, var(--muted)); margin: 22px 0 6px; padding-left: 36px;
+  color: var(--tone, var(--muted)); margin: 22px 0 6px; padding: 4px 0 4px 36px;
+  background: none; border: 0; cursor: pointer; border-radius: 6px;
 }
+.res-tema:hover { text-decoration: underline; }
+.res-tema:focus-visible { outline: 2px solid var(--tone, var(--violet)); }
 
 .vacio { text-align: center; color: var(--muted); padding: 48px 20px; font-size: 15px; }
 
@@ -444,7 +513,8 @@ mark { background: var(--tone-bg, var(--violet-bg)); color: inherit; border-radi
     <div id="resultados" hidden></div>
     <p class="pie">
       Cuatro pasos por elemento: qué se ve → qué significa → cómo lo dice Sketchy → texto literal.
-      El color marca la tinción: violeta cristal para Gram-positivas, rosa safranina para Gram-negativas.
+      El color marca la tinción real donde aplica — violeta cristal para Gram-positivas, rosa safranina
+      para Gram-negativas — y cada Parte del manual tiene además su propio color para ubicarte de un vistazo.
     </p>
   </main>
 </div>
@@ -591,10 +661,10 @@ function pintarPanel() {
   panelImg.alt = temaActual.titulo + " — " + (vistaImg === "mapa" ? "mapa numerado" : "hoja de texto");
 }
 
-function abrirTema(slug) {
+function abrirTema(slug, { push = true } = {}) {
   const reg = porSlug[slug];
   if (!reg) return;
-  scrollLista = window.scrollY;
+  if (!document.body.classList.contains("en-estudio")) scrollLista = window.scrollY;
   temaActual = reg.tema;
   vistaImg = reg.tema.mapa ? "mapa" : "texto";
 
@@ -607,7 +677,9 @@ function abrirTema(slug) {
   document.body.classList.add("en-estudio");
   document.body.classList.remove("panel-oculto");
   window.scrollTo(0, 0);
-  history.pushState({ slug }, "", "#" + slug);
+  // al volver por popstate (atras/adelante del navegador) no se debe volver
+  // a apilar otra entrada de historial, o el boton "atras" se queda pegado
+  if (push) history.pushState({ slug }, "", "#" + slug);
 }
 
 function cerrarTema() {
@@ -618,8 +690,13 @@ function cerrarTema() {
 
 document.getElementById("volver").addEventListener("click", () => { history.back(); });
 
+document.querySelector(".brand h1").addEventListener("click", () => {
+  if (document.body.classList.contains("en-estudio")) history.back();
+  else window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
 window.addEventListener("popstate", ev => {
-  if (ev.state && ev.state.slug) abrirTema(ev.state.slug);
+  if (ev.state && ev.state.slug) abrirTema(ev.state.slug, { push: false });
   else cerrarTema();
 });
 
@@ -696,7 +773,7 @@ function buscar() {
   cont.hidden = true; chips.hidden = true; salida.hidden = false;
 
   if (!hits.length) {
-    salida.innerHTML = `<p class="vacio">Sin resultados para “${esc(termino)}”.</p>`;
+    salida.innerHTML = `<p class="vacio">🔎 Nada por aquí para "${esc(termino)}" — prueba con otra palabra.</p>`;
     return;
   }
 
@@ -705,7 +782,7 @@ function buscar() {
   hits.slice(0, 200).forEach(h => {
     if (h.tema.slug !== actual) {
       actual = h.tema.slug;
-      html += `<div class="parte" data-c="${h.parte.codigo}"><p class="res-tema">${esc(h.tema.titulo)}</p></div>`;
+      html += `<div class="parte" data-c="${h.parte.codigo}"><button class="res-tema" data-slug="${esc(h.tema.slug)}">${esc(h.tema.titulo)} →</button></div>`;
     }
     html += `<div class="parte" data-c="${h.parte.codigo}">${pintarItem(h.item, termino)}</div>`;
   });
@@ -714,6 +791,11 @@ function buscar() {
   salida.innerHTML = html;
   window.scrollTo({ top: 0 });
 }
+
+salida.addEventListener("click", ev => {
+  const b = ev.target.closest(".res-tema");
+  if (b) abrirTema(b.dataset.slug);
+});
 
 campo.addEventListener("input", () => { clearTimeout(pendiente); pendiente = setTimeout(buscar, 120); });
 document.getElementById("limpiar").addEventListener("click", () => { campo.value = ""; campo.focus(); buscar(); });
