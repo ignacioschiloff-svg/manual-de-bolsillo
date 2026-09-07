@@ -152,6 +152,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 |---|---|
 | Coccidioides immitis | [ver](13-micologia/coccidioides-immitis.md) |
 | Histoplasma capsulatum | [ver](13-micologia/histoplasma-capsulatum.md) |
+| Malassezia furfur | [ver](13-micologia/malassezia-furfur.md) |
 
 ---
 
