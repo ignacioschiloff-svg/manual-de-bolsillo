@@ -154,6 +154,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Histoplasma capsulatum | [ver](13-micologia/histoplasma-capsulatum.md) |
 | Malassezia furfur | [ver](13-micologia/malassezia-furfur.md) |
 | Epidermophyton, Trichophyton, Microsporum (Dermatofitos) | [ver](13-micologia/dermatofitos.md) |
+| Sporothrix schenckii | [ver](13-micologia/sporothrix-schenckii.md) |
 
 ---
 
