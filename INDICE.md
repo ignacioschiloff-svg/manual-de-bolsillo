@@ -75,6 +75,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Dismotilidad y cáncer esofágico | [ver](05-patologia-gi/dismotilidad-cancer-esofagico.md) |
 | Dismotilidad y cáncer gástrico | [ver](05-patologia-gi/dismotilidad-cancer-gastrico.md) |
 | Gastritis aguda y crónica, y enfermedad ulcerosa péptica | [ver](05-patologia-gi/gastritis-peptica.md) |
+| Trastornos de intestino grueso y apéndice | [ver](05-patologia-gi/intestino-grueso-apendice.md) |
 
 ## Parte 6 — Hematología
 
@@ -99,6 +100,8 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Cloranfenicol | [ver](07-farmacologia/cloranfenicol.md) |
 | Trombolíticos | [ver](07-farmacologia/trombolíticos.md) |
 | Fluoroquinolonas | [ver](07-farmacologia/fluoroquinolonas.md) |
+| Cefalosporinas | [ver](07-farmacologia/cefalosporinas.md) |
+| Aminoglucósidos | [ver](07-farmacologia/aminoglucosidos.md) |
 
 ## Parte 8 — Neurología
 
@@ -109,12 +112,14 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Nervios lumbosacros | [ver](08-neurologia/nervios-lumbosacros.md) |
 | Creutzfeldt-Jakob, Parkinson y Huntington | [ver](08-neurologia/enfermedad-cjd-parkinson-huntington.md) |
 | Hidrocefalia | [ver](08-neurologia/hidrocefalia.md) |
+| Ictus isquémico y hemorrágico | [ver](08-neurologia/ictus-isquemico-hemorragico.md) |
 
 ## Parte 9 — Neumología
 
 | Tema | Archivo |
 |---|---|
 | Síndrome de dificultad respiratoria aguda (ARDS) | [ver](09-neumologia/sindrome-dificultad-respiratoria-aguda.md) |
+| EPOC y enfisema | [ver](09-neumologia/copd-enfisema.md) |
 
 ## Parte 10 — Inmunología
 
@@ -133,6 +138,13 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Tema | Archivo |
 |---|---|
 | Entamoeba histolytica | [ver](12-parasitologia/entamoeba-histolytica.md) |
+
+## Parte 13 — Micología
+
+| Tema | Archivo |
+|---|---|
+| Coccidioides immitis | [ver](13-micologia/coccidioides-immitis.md) |
+| Histoplasma capsulatum | [ver](13-micologia/histoplasma-capsulatum.md) |
 
 ---
 

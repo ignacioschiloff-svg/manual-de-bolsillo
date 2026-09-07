@@ -42,6 +42,7 @@ PARTES = [
     ("10-inmunologia", "Inmunología", "im"),
     ("11-ginecologia", "Ginecología", "gi"),
     ("12-parasitologia", "Parasitología", "pr"),
+    ("13-micologia", "Micología", "mi"),
 ]
 
 PASOS = [("🎨", "ver"), ("💡", "clinica"), ("🧠", "sketchy"), ("📜", "literal")]
