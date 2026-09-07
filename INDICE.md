@@ -34,11 +34,13 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Escherichia coli (ETEC & EHEC) | [ver](02-gram-negativas/escherichia-coli.md) |
 | Klebsiella, Enterobacter, Serratia | [ver](02-gram-negativas/klebsiella-enterobacter-serratia.md) |
 | Proteus mirabilis | [ver](02-gram-negativas/proteus-mirabilis.md) |
+| Campylobacter jejuni | [ver](02-gram-negativas/campylobacter-jejuni.md) |
 | Salmonella enteritidis & typhi | [ver](02-gram-negativas/salmonella.md) |
 | Shigella spp. | [ver](02-gram-negativas/shigella.md) |
 | Yersinia enterocolitica & pestis | [ver](02-gram-negativas/yersinia.md) |
 | Vibrio spp. | [ver](02-gram-negativas/vibrio.md) |
-| Campylobacter jejuni | [ver](02-gram-negativas/campylobacter-jejuni.md) |
+| Legionella pneumophila | [ver](02-gram-negativas/legionella-pneumophila.md) |
+| Pseudomonas aeruginosa | [ver](02-gram-negativas/pseudomonas-aeruginosa.md) |
 | Neisseria gonorrhoeae | [ver](02-gram-negativas/neisseria-gonorrhoeae.md) |
 | Borrelia recurrentis | [ver](02-gram-negativas/borrelia-recurrentis.md) |
 | Borrelia burgdorferi | [ver](02-gram-negativas/borrelia-burgdorferi.md) |
@@ -49,7 +51,6 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Tema | Archivo |
 |---|---|
 | Rickettsia — Visión general | [ver](03-rickettsias/rickettsia-overview.md) |
-| Rickettsia rickettsii | [ver](03-rickettsias/rickettsia-rickettsii.md) |
 | Rickettsia prowazekii | [ver](03-rickettsias/rickettsia-prowazekii.md) |
 
 ## Parte 4 — Virus
@@ -96,12 +97,16 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Vancomicina | [ver](07-farmacologia/vancomicina.md) |
 | Laxantes y antidiarreicos | [ver](07-farmacologia/laxantes-antidiarreicos.md) |
 | Cloranfenicol | [ver](07-farmacologia/cloranfenicol.md) |
+| Trombolíticos | [ver](07-farmacologia/trombolíticos.md) |
+| Fluoroquinolonas | [ver](07-farmacologia/fluoroquinolonas.md) |
 
 ## Parte 8 — Neurología
 
 | Tema | Archivo |
 |---|---|
 | Nervios craneales I y II (Olfatorio y Óptico) | [ver](08-neurologia/nervios-craneales-i-ii.md) |
+| Nervio craneal IX (Glosofaríngeo) | [ver](08-neurologia/nervio-craneal-ix.md) |
+| Nervios lumbosacros | [ver](08-neurologia/nervios-lumbosacros.md) |
 | Creutzfeldt-Jakob, Parkinson y Huntington | [ver](08-neurologia/enfermedad-cjd-parkinson-huntington.md) |
 | Hidrocefalia | [ver](08-neurologia/hidrocefalia.md) |
 
