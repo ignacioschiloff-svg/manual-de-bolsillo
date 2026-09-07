@@ -101,12 +101,25 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--ground);
+  /* siempre un gradiente con la misma forma (aunque en la lista sea
+     "ground sobre ground", invisible) para que el navegador pueda
+     interpolar color a color al entrar, salir o cambiar de tema, en vez
+     de saltar de golpe entre un color solido y un gradiente */
+  background: linear-gradient(180deg, var(--ground) 0%, var(--ground) 480px);
   color: var(--ink);
   font-family: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
+  transition: background .5s ease;
+}
+
+/* fondo ambiental de la vista de estudio: un lavado suave del color de la
+   Parte que se desvanece hacia --ground; al cambiar de tema (aunque sea de
+   una Parte a otra) el body hereda un nuevo data-c y este fondo transiciona
+   solo en vez de cambiar de golpe */
+body.en-estudio {
+  background: linear-gradient(180deg, var(--tone-bg, var(--ground)) 0%, var(--ground) 480px);
 }
 
 button { font: inherit; }
@@ -186,10 +199,21 @@ button { font: inherit; }
 .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 90px; }
 
 .chips {
-  display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;
-  margin: 18px 0 4px; padding-bottom: 2px;
+  display: flex; gap: 6px; overflow-x: auto;
+  margin: 18px 0 8px; padding-bottom: 10px;
+  cursor: grab;
+  /* barra de desplazamiento visible y delgada en vez de escondida, para que
+     se note que hay mas categorias a los costados y se pueda arrastrar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) transparent;
 }
-.chips::-webkit-scrollbar { display: none; }
+.chips:active { cursor: grabbing; }
+.chips::-webkit-scrollbar { height: 6px; }
+.chips::-webkit-scrollbar-track { background: transparent; }
+.chips::-webkit-scrollbar-thumb {
+  background: var(--muted); border-radius: 999px;
+}
+.chips::-webkit-scrollbar-thumb:hover { background: var(--ink-soft); }
 /* [hidden] pierde contra ".chips{display:flex}" por especificidad de origen
    de autor vs. la hoja del navegador — sin esto la fila de chips se queda
    visible encima de los resultados de busqueda */
@@ -235,19 +259,19 @@ button { font: inherit; }
    lista (.parte), a la vista de estudio (.estudio) y al chip de navegacion
    (.chip), asi ya no hace falta acordarse de listar cada codigo nuevo en
    tres lugares distintos cuando se agrega una Parte */
-.parte[data-c="gp"], .estudio[data-c="gp"], .chip[data-c="gp"] { --tone: var(--c-gp); --tone-bg: var(--c-gp-bg); }
-.parte[data-c="gn"], .estudio[data-c="gn"], .chip[data-c="gn"] { --tone: var(--c-gn); --tone-bg: var(--c-gn-bg); }
-.parte[data-c="rk"], .estudio[data-c="rk"], .chip[data-c="rk"] { --tone: var(--c-rk); --tone-bg: var(--c-rk-bg); }
-.parte[data-c="vi"], .estudio[data-c="vi"], .chip[data-c="vi"] { --tone: var(--c-vi); --tone-bg: var(--c-vi-bg); }
-.parte[data-c="pa"], .estudio[data-c="pa"], .chip[data-c="pa"] { --tone: var(--c-pa); --tone-bg: var(--c-pa-bg); }
-.parte[data-c="he"], .estudio[data-c="he"], .chip[data-c="he"] { --tone: var(--c-he); --tone-bg: var(--c-he-bg); }
-.parte[data-c="fa"], .estudio[data-c="fa"], .chip[data-c="fa"] { --tone: var(--c-fa); --tone-bg: var(--c-fa-bg); }
-.parte[data-c="ne"], .estudio[data-c="ne"], .chip[data-c="ne"] { --tone: var(--c-ne); --tone-bg: var(--c-ne-bg); }
-.parte[data-c="nu"], .estudio[data-c="nu"], .chip[data-c="nu"] { --tone: var(--c-nu); --tone-bg: var(--c-nu-bg); }
-.parte[data-c="im"], .estudio[data-c="im"], .chip[data-c="im"] { --tone: var(--c-im); --tone-bg: var(--c-im-bg); }
-.parte[data-c="gi"], .estudio[data-c="gi"], .chip[data-c="gi"] { --tone: var(--c-gi); --tone-bg: var(--c-gi-bg); }
-.parte[data-c="pr"], .estudio[data-c="pr"], .chip[data-c="pr"] { --tone: var(--c-pr); --tone-bg: var(--c-pr-bg); }
-.parte[data-c="mi"], .estudio[data-c="mi"], .chip[data-c="mi"] { --tone: var(--c-mi); --tone-bg: var(--c-mi-bg); }
+.parte[data-c="gp"], .estudio[data-c="gp"], .chip[data-c="gp"], body[data-c="gp"] { --tone: var(--c-gp); --tone-bg: var(--c-gp-bg); }
+.parte[data-c="gn"], .estudio[data-c="gn"], .chip[data-c="gn"], body[data-c="gn"] { --tone: var(--c-gn); --tone-bg: var(--c-gn-bg); }
+.parte[data-c="rk"], .estudio[data-c="rk"], .chip[data-c="rk"], body[data-c="rk"] { --tone: var(--c-rk); --tone-bg: var(--c-rk-bg); }
+.parte[data-c="vi"], .estudio[data-c="vi"], .chip[data-c="vi"], body[data-c="vi"] { --tone: var(--c-vi); --tone-bg: var(--c-vi-bg); }
+.parte[data-c="pa"], .estudio[data-c="pa"], .chip[data-c="pa"], body[data-c="pa"] { --tone: var(--c-pa); --tone-bg: var(--c-pa-bg); }
+.parte[data-c="he"], .estudio[data-c="he"], .chip[data-c="he"], body[data-c="he"] { --tone: var(--c-he); --tone-bg: var(--c-he-bg); }
+.parte[data-c="fa"], .estudio[data-c="fa"], .chip[data-c="fa"], body[data-c="fa"] { --tone: var(--c-fa); --tone-bg: var(--c-fa-bg); }
+.parte[data-c="ne"], .estudio[data-c="ne"], .chip[data-c="ne"], body[data-c="ne"] { --tone: var(--c-ne); --tone-bg: var(--c-ne-bg); }
+.parte[data-c="nu"], .estudio[data-c="nu"], .chip[data-c="nu"], body[data-c="nu"] { --tone: var(--c-nu); --tone-bg: var(--c-nu-bg); }
+.parte[data-c="im"], .estudio[data-c="im"], .chip[data-c="im"], body[data-c="im"] { --tone: var(--c-im); --tone-bg: var(--c-im-bg); }
+.parte[data-c="gi"], .estudio[data-c="gi"], .chip[data-c="gi"], body[data-c="gi"] { --tone: var(--c-gi); --tone-bg: var(--c-gi-bg); }
+.parte[data-c="pr"], .estudio[data-c="pr"], .chip[data-c="pr"], body[data-c="pr"] { --tone: var(--c-pr); --tone-bg: var(--c-pr-bg); }
+.parte[data-c="mi"], .estudio[data-c="mi"], .chip[data-c="mi"], body[data-c="mi"] { --tone: var(--c-mi); --tone-bg: var(--c-mi-bg); }
 
 .temas { display: flex; flex-direction: column; gap: 7px; }
 
@@ -597,6 +621,38 @@ const cont   = document.getElementById("indice");
 const chips  = document.getElementById("chips");
 const porSlug = {};
 
+// la fila de chips solo se desplaza de lado con gestos tactiles/trackpad;
+// con mouse normal (rueda vertical, o clic y arrastre) no se movia. Se
+// convierte la rueda vertical en desplazamiento horizontal y se agrega
+// arrastre con el mouse, evitando que el arrastre dispare el click del link.
+(function habilitarScrollHorizontal(el) {
+  el.addEventListener("wheel", ev => {
+    if (el.scrollWidth <= el.clientWidth) return;
+    ev.preventDefault();
+    el.scrollLeft += ev.deltaY !== 0 ? ev.deltaY : ev.deltaX;
+  }, { passive: false });
+
+  let arrastrando = false, movio = false, x0 = 0, left0 = 0;
+  el.addEventListener("pointerdown", ev => {
+    if (el.scrollWidth <= el.clientWidth) return;
+    arrastrando = true; movio = false;
+    x0 = ev.clientX; left0 = el.scrollLeft;
+    el.setPointerCapture(ev.pointerId);
+  });
+  el.addEventListener("pointermove", ev => {
+    if (!arrastrando) return;
+    const dx = ev.clientX - x0;
+    if (Math.abs(dx) > 4) movio = true;
+    el.scrollLeft = left0 - dx;
+  });
+  const soltar = () => { arrastrando = false; };
+  el.addEventListener("pointerup", soltar);
+  el.addEventListener("pointercancel", soltar);
+  el.addEventListener("click", ev => {
+    if (movio) { ev.preventDefault(); movio = false; }
+  }, true);
+})(chips);
+
 DATOS.forEach((parte, i) => {
   const id = "p" + i;
 
@@ -669,6 +725,7 @@ function abrirTema(slug, { push = true } = {}) {
   vistaImg = reg.tema.mapa ? "mapa" : "texto";
 
   estudio.dataset.c = reg.parte.codigo;
+  document.body.dataset.c = reg.parte.codigo;
   estTit.textContent = reg.tema.titulo;
   estCnt.textContent = reg.tema.items.length;
   fichas.innerHTML = reg.tema.items.map(it => pintarItem(it, "")).join("");
@@ -695,9 +752,15 @@ document.querySelector(".brand h1").addEventListener("click", () => {
   else window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-window.addEventListener("popstate", ev => {
-  if (ev.state && ev.state.slug) abrirTema(ev.state.slug, { push: false });
-  else cerrarTema();
+window.addEventListener("popstate", () => {
+  // ojo: un simple <a href="#p0"> de los chips TAMBIEN dispara popstate
+  // (sin ev.state), asi que no basta con mirar ev.state: hay que fijarse
+  // en el hash real. Si no es el slug de un tema y no estamos en la vista
+  // de estudio, es solo un chip llevando a una seccion de la lista — no
+  // hay que tocar nada y dejar que el navegador haga su scroll normal.
+  const slug = decodeURIComponent(location.hash.slice(1));
+  if (slug && porSlug[slug]) abrirTema(slug, { push: false });
+  else if (document.body.classList.contains("en-estudio")) cerrarTema();
 });
 
 seg.addEventListener("click", ev => {
