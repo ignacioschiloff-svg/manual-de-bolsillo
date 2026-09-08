@@ -196,6 +196,34 @@ def render_html(plantilla, partes, n_temas, n_items):
             .replace("{{N_ITEMS}}", str(n_items)))
 
 
+def envolver_web(html):
+    """Arma el documento HTML completo para GitHub Pages.
+
+    El Artifact de Claude agrega solo su <head> (charset, viewport, doctype),
+    pero la copia de GitHub Pages se sirve tal cual: sin <meta viewport> el
+    celular la dibuja como si fuera una pantalla de escritorio y todo sale
+    diminuto, y sin <!doctype> el navegador entra en "modo raro" de layout.
+    """
+    corte = html.index("</style>") + len("</style>")
+    cabeza, cuerpo = html[:corte], html[corte:]
+    return f"""<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FAF8FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15121A" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Manual de Bolsillo: los Sketchy explicados paso a paso.">
+{cabeza}
+</head>
+<body>
+{cuerpo}
+</body>
+</html>
+"""
+
+
 def construir():
     IMGS.mkdir(exist_ok=True)
     partes, n_img = recolectar()
@@ -240,7 +268,7 @@ def construir():
                 peso_web += exportar_archivo_web(t_orig["_texto"], destino)
                 t_copia["texto"] = f"imagenes/{destino.name}"
 
-    salida_web = render_html(plantilla, partes_web, n_temas, n_items)
+    salida_web = envolver_web(render_html(plantilla, partes_web, n_temas, n_items))
     (DOCS / "index.html").write_text(salida_web, encoding="utf-8")
 
     print(f"Artifact -> sketchy.html")

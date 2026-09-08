@@ -1,3 +1,12 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FAF8FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15121A" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Manual de Bolsillo: los Sketchy explicados paso a paso.">
 <title>Manual de Bolsillo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -386,6 +395,43 @@ body.en-estudio .estudio { display: block; }
 }
 .icon-btn:hover { color: var(--tone, var(--violet)); border-color: var(--tone, var(--violet)); }
 .icon-btn:focus-visible { outline: 2px solid var(--tone, var(--violet)); }
+.icon-btn[aria-expanded="true"] { color: var(--tone, var(--violet)); border-color: var(--tone, var(--violet)); }
+
+/* --- salto directo a un numero del dibujo --- */
+
+.salto { position: relative; flex: none; }
+
+.nums {
+  position: absolute; right: 0; top: calc(100% + 6px); z-index: 5;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 10px; padding: 9px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .17);
+  display: grid; grid-template-columns: repeat(8, 32px); gap: 4px;
+  max-height: 48vh; overflow-y: auto; overscroll-behavior: contain;
+}
+.nums[hidden] { display: none; }
+
+.nums button {
+  border: 1px solid var(--line); background: var(--surface);
+  color: var(--ink-soft); cursor: pointer; padding: 0;
+  height: 28px; border-radius: 6px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; font-variant-numeric: tabular-nums;
+}
+.nums button:hover { border-color: var(--tone, var(--violet)); color: var(--tone, var(--violet)); }
+.nums button:focus-visible { outline: 2px solid var(--tone, var(--violet)); }
+.nums button.aqui {
+  background: var(--tone-bg, var(--surface-alt));
+  border-color: var(--tone, var(--violet));
+  color: var(--tone, var(--violet)); font-weight: 600;
+}
+
+/* al saltar, la ficha se enciende un momento para no perderla de vista */
+.item.destaca { animation: destello 1.5s ease; border-radius: 9px; }
+@keyframes destello {
+  0%, 25% { background: var(--tone-bg, var(--surface-alt)); }
+  100%    { background: transparent; }
+}
 
 .panel-img {
   display: block; width: 100%;
@@ -517,6 +563,9 @@ mark { background: var(--tone-bg, var(--violet-bg)); color: inherit; border-radi
   pointer-events: none;
 }
 </style>
+</head>
+<body>
+
 
 <!-- ---------- LISTA ---------- -->
 <div class="lista-vista">
@@ -562,6 +611,11 @@ mark { background: var(--tone-bg, var(--violet-bg)); color: inherit; border-radi
           <button data-k="texto" aria-pressed="false">Texto</button>
         </div>
         <span class="panel-espacio"></span>
+        <span class="salto">
+          <button class="icon-btn" id="btnNums" aria-label="Ir a un número"
+                  title="Ir a un número" aria-expanded="false" aria-controls="nums">#</button>
+          <div class="nums" id="nums" role="menu" aria-label="Números del dibujo" hidden></div>
+        </span>
         <button class="icon-btn" id="btnZoom" aria-label="Ampliar imagen" title="Ampliar">⤢</button>
         <button class="icon-btn" id="btnPlegar" aria-label="Ocultar imagen" title="Ocultar imagen">▲</button>
       </div>
@@ -613,7 +667,7 @@ function pintarItem(item, termino) {
     const cls = clave === "literal" ? "paso literal" : "paso";
     return `<div class="${cls}"><span class="lbl"><span class="em">${emoji}</span>${etiqueta}</span>${parrafos(item[clave], termino)}</div>`;
   }).join("");
-  return `<article class="item" id="it-${esc(item.n)}">
+  return `<article class="item" id="it-${esc(item.n)}" data-n="${esc(item.n)}">
       <div class="item-head"><span class="num">${esc(item.n)}</span><span class="titulo">${resaltar(item.nombre, termino)}</span></div>
       ${pasos}
     </article>`;
@@ -737,6 +791,8 @@ function abrirTema(slug, { push = true } = {}) {
 
   document.body.classList.add("en-estudio");
   document.body.classList.remove("panel-oculto");
+  restaurarPlegar();
+  cerrarNums();
   window.scrollTo(0, 0);
   // al volver por popstate (atras/adelante del navegador) no se debe volver
   // a apilar otra entrada de historial, o el boton "atras" se queda pegado
@@ -745,6 +801,7 @@ function abrirTema(slug, { push = true } = {}) {
 
 function cerrarTema() {
   document.body.classList.remove("en-estudio");
+  cerrarNums();
   temaActual = null;
   window.scrollTo(0, scrollLista);
 }
@@ -774,10 +831,95 @@ seg.addEventListener("click", ev => {
   pintarPanel();
 });
 
-document.getElementById("btnPlegar").addEventListener("click", ev => {
+const btnPlegar = document.getElementById("btnPlegar");
+
+btnPlegar.addEventListener("click", () => {
   const oculto = document.body.classList.toggle("panel-oculto");
-  ev.currentTarget.textContent = oculto ? "▼" : "▲";
-  ev.currentTarget.title = oculto ? "Mostrar imagen" : "Ocultar imagen";
+  btnPlegar.textContent = oculto ? "▼" : "▲";
+  btnPlegar.title = oculto ? "Mostrar imagen" : "Ocultar imagen";
+});
+
+// al abrir otro tema la imagen vuelve a mostrarse: la flecha debe acompañar
+function restaurarPlegar() {
+  btnPlegar.textContent = "▲";
+  btnPlegar.title = "Ocultar imagen";
+}
+
+/* ---------- salto a un numero ---------- */
+
+const btnNums = document.getElementById("btnNums");
+const cajaNums = document.getElementById("nums");
+
+// donde empieza la zona de lectura: en pantalla angosta el panel de imagen
+// esta pegado arriba y tapa el inicio, en pantalla ancha esta al costado
+function lineaLectura() {
+  const barra = document.querySelector(".est-top").getBoundingClientRect().bottom;
+  const minima = barra + 16;   // nunca por encima de la barra del titulo
+  if (window.matchMedia("(min-width: 950px)").matches) return minima;
+  if (document.body.classList.contains("panel-oculto")) return minima;
+  return Math.max(minima, panel.getBoundingClientRect().bottom + 8);
+}
+
+// la ultima ficha que ya paso la linea de lectura es la que se esta leyendo;
+// arriba del todo todavia no paso ninguna, asi que vale la primera
+function numEnPantalla() {
+  const todas = fichas.querySelectorAll(".item");
+  if (!todas.length) return null;
+  const linea = lineaLectura();
+  let actual = todas[0];
+  for (const el of todas) {
+    if (el.getBoundingClientRect().top - linea > 4) break;
+    actual = el;
+  }
+  return actual.dataset.n;
+}
+
+function irANumero(n) {
+  let el = null;
+  for (const it of fichas.querySelectorAll(".item")) {
+    if (it.dataset.n === n) { el = it; break; }
+  }
+  if (!el) return;
+  // se calcula a mano en vez de usar scrollIntoView: el margen fijo del CSS
+  // supone que hay imagen arriba, y en los temas sin imagen dejaria la ficha
+  // media pantalla mas abajo de lo que corresponde
+  const destino = window.scrollY + el.getBoundingClientRect().top - lineaLectura() - 8;
+  window.scrollTo({ top: Math.max(0, destino), behavior: "smooth" });
+  el.classList.remove("destaca");
+  void el.offsetWidth;            // reinicia la animacion si se repite el salto
+  el.classList.add("destaca");
+}
+
+function abrirNums() {
+  if (!temaActual) return;
+  const aqui = numEnPantalla();
+  cajaNums.innerHTML = temaActual.items.map(it =>
+    `<button type="button" role="menuitem" data-n="${esc(it.n)}"${
+      it.n === aqui ? ' class="aqui"' : ""}>${esc(it.n)}</button>`).join("");
+  cajaNums.hidden = false;
+  btnNums.setAttribute("aria-expanded", "true");
+  const marcado = cajaNums.querySelector(".aqui");
+  if (marcado) marcado.scrollIntoView({ block: "nearest" });
+}
+
+function cerrarNums() {
+  cajaNums.hidden = true;
+  btnNums.setAttribute("aria-expanded", "false");
+}
+
+btnNums.addEventListener("click", () => {
+  cajaNums.hidden ? abrirNums() : cerrarNums();
+});
+
+cajaNums.addEventListener("click", ev => {
+  const b = ev.target.closest("button[data-n]");
+  if (!b) return;
+  cerrarNums();
+  irANumero(b.dataset.n);
+});
+
+document.addEventListener("pointerdown", ev => {
+  if (!cajaNums.hidden && !ev.target.closest(".salto")) cerrarNums();
 });
 
 /* ---------- visor ---------- */
@@ -807,6 +949,7 @@ visor.addEventListener("click", ev => {
 document.addEventListener("keydown", ev => {
   if (ev.key === "Escape") {
     if (visor.hasAttribute("data-abierto")) cerrarVisor();
+    else if (!cajaNums.hidden) { cerrarNums(); btnNums.focus(); }
     else if (document.body.classList.contains("en-estudio")) history.back();
   }
 });
@@ -871,3 +1014,6 @@ document.getElementById("limpiar").addEventListener("click", () => { campo.value
 const inicial = decodeURIComponent(location.hash.slice(1));
 if (inicial && porSlug[inicial]) abrirTema(inicial);
 </script>
+
+</body>
+</html>
