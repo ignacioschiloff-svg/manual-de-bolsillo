@@ -43,6 +43,7 @@ PARTES = [
     ("11-ginecologia", "Ginecología", "gi"),
     ("12-parasitologia", "Parasitología", "pr"),
     ("13-micologia", "Micología", "mi"),
+    ("14-oncologia", "Oncología", "on"),
 ]
 
 PASOS = [("🎨", "ver"), ("💡", "clinica"), ("🧠", "sketchy"), ("📜", "literal")]
@@ -52,7 +53,7 @@ EXTENSIONES = (".png", ".jpg", ".jpeg", ".webp", ".PNG", ".JPG", ".JPEG", ".WEBP
 # --- limites solo para la version Artifact (sketchy.html) ---
 PRESUPUESTO_ARTIFACT = 11_800_000
 TOPE_MAX_ARTIFACT = 620_000
-TOPE_MIN_ARTIFACT = 90_000
+TOPE_MIN_ARTIFACT = 55_000
 
 # --- calidad fija para la version web (docs/), sin limite de peso total ---
 ANCHO_WEB = 2400
@@ -95,15 +96,19 @@ def comprimir_data_uri(ruta, tope_bytes):
         ancho_max = 2000
     elif tope_bytes >= 160_000:
         ancho_max = 1700
-    else:
+    elif tope_bytes >= 90_000:
         ancho_max = 1400
+    elif tope_bytes >= 65_000:
+        ancho_max = 1150
+    else:
+        ancho_max = 950
 
     if img.width > ancho_max:
         alto = round(img.height * ancho_max / img.width)
         img = img.resize((ancho_max, alto), Image.LANCZOS)
 
     mejor = None
-    for calidad in (90, 84, 78, 72, 66, 60, 54, 48, 42, 36, 30):
+    for calidad in (90, 84, 78, 72, 66, 60, 54, 48, 42, 36, 30, 24, 18):
         buf = io.BytesIO()
         img.save(buf, format="WEBP", quality=calidad, method=6)
         mejor = buf.getvalue()

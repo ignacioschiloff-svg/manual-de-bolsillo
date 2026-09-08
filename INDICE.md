@@ -60,6 +60,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Poliomavirus JC y BK (Polyomaviridae) | [ver](04-virus/poliomavirus-jc-bk.md) |
 | Virus de la Rabia (Rhabdoviridae) | [ver](04-virus/rabia.md) |
 | Rotavirus y virus de la fiebre por garrapata de Colorado (Reoviridae) | [ver](04-virus/rotavirus-colorado-tick-fever.md) |
+| Picornaviridae — Visión general | [ver](04-virus/picornaviridae-overview.md) |
 
 ## Parte 5 — Patología GI y hepática
 
@@ -80,6 +81,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Trastornos autoinmunes de la vía biliar y cáncer | [ver](05-patologia-gi/trastornos-autoinmunes-via-biliar.md) |
 | Enfermedad de la vesícula biliar y vía biliar | [ver](05-patologia-gi/vesicula-biliar-via-biliar.md) |
 | Trastornos esofágicos estructurales y ERGE | [ver](05-patologia-gi/trastornos-esofagicos-estructurales-erge.md) |
+| Pancreatitis aguda | [ver](05-patologia-gi/pancreatitis-aguda.md) |
 
 ## Parte 6 — Hematología
 
@@ -114,6 +116,11 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Bloqueadores H2 e inhibidores de bomba de protones | [ver](07-farmacologia/bloqueadores-h2-ppi.md) |
 | Monobactámicos y carbapenémicos | [ver](07-farmacologia/monobactamicos-carbapenemicos.md) |
 | Benzodiacepinas y Flumazenil | [ver](07-farmacologia/benzodiazepinas-flumazenil.md) |
+| Interferones | [ver](07-farmacologia/interferones.md) |
+| Pheochromocytoma & Neuroblastoma | [ver](07-farmacologia/pheochromocytoma-neuroblastoma.md) |
+| Simpaticomiméticos indirectos | [ver](07-farmacologia/simpaticomimeticos-indirectos.md) |
+| Simpaticomiméticos | [ver](07-farmacologia/simpaticomimeticos.md) |
+| Beta bloqueadores | [ver](07-farmacologia/beta-blockers.md) |
 
 ## Parte 8 — Neurología
 
@@ -125,6 +132,10 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Creutzfeldt-Jakob, Parkinson y Huntington | [ver](08-neurologia/enfermedad-cjd-parkinson-huntington.md) |
 | Hidrocefalia | [ver](08-neurologia/hidrocefalia.md) |
 | Ictus isquémico y hemorrágico | [ver](08-neurologia/ictus-isquemico-hemorragico.md) |
+| Nervios craneales III, IV y VI (Correlatos clínicos) | [ver](08-neurologia/nervios-craneales-iii-iv-vi.md) |
+| Nervio craneal V (Trigémino, correlatos clínicos) | [ver](08-neurologia/nervio-craneal-v.md) |
+| Esclerosis múltiple: evaluación y manejo | [ver](08-neurologia/esclerosis-multiple-evaluacion-manejo.md) |
+| Tumores del SNC pediátricos | [ver](08-neurologia/tumores-snc-pediatricos.md) |
 
 ## Parte 9 — Neumología
 
@@ -152,6 +163,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 |---|---|
 | Entamoeba histolytica | [ver](12-parasitologia/entamoeba-histolytica.md) |
 | Trypanosoma cruzi (enfermedad de Chagas) | [ver](12-parasitologia/trypanosoma-cruzi-chagas.md) |
+| Trypanosoma brucei (enfermedad del sueño africana) | [ver](12-parasitologia/trypanosoma-brucei.md) |
 
 ## Parte 13 — Micología
 
@@ -162,6 +174,14 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Malassezia furfur | [ver](13-micologia/malassezia-furfur.md) |
 | Epidermophyton, Trichophyton, Microsporum (Dermatofitos) | [ver](13-micologia/dermatofitos.md) |
 | Sporothrix schenckii | [ver](13-micologia/sporothrix-schenckii.md) |
+| Candida albicans | [ver](13-micologia/candida-albicans.md) |
+| Aspergillus fumigatus | [ver](13-micologia/aspergillus-fumigatus.md) |
+
+## Parte 14 — Oncología
+
+| Tema | Archivo |
+|---|---|
+| Melanoma maligno | [ver](14-oncologia/melanoma-maligno.md) |
 
 ---
 
