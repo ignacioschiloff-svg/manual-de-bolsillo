@@ -50,7 +50,7 @@ PASOS = [("🎨", "ver"), ("💡", "clinica"), ("🧠", "sketchy"), ("📜", "li
 EXTENSIONES = (".png", ".jpg", ".jpeg", ".webp", ".PNG", ".JPG", ".JPEG", ".WEBP")
 
 # --- limites solo para la version Artifact (sketchy.html) ---
-PRESUPUESTO_ARTIFACT = 13_200_000
+PRESUPUESTO_ARTIFACT = 11_800_000
 TOPE_MAX_ARTIFACT = 620_000
 TOPE_MIN_ARTIFACT = 90_000
 

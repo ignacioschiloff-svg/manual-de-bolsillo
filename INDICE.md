@@ -59,6 +59,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 |---|---|
 | Poliomavirus JC y BK (Polyomaviridae) | [ver](04-virus/poliomavirus-jc-bk.md) |
 | Virus de la Rabia (Rhabdoviridae) | [ver](04-virus/rabia.md) |
+| Rotavirus y virus de la fiebre por garrapata de Colorado (Reoviridae) | [ver](04-virus/rotavirus-colorado-tick-fever.md) |
 
 ## Parte 5 — Patología GI y hepática
 
@@ -77,6 +78,8 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Gastritis aguda y crónica, y enfermedad ulcerosa péptica | [ver](05-patologia-gi/gastritis-peptica.md) |
 | Trastornos de intestino grueso y apéndice | [ver](05-patologia-gi/intestino-grueso-apendice.md) |
 | Trastornos autoinmunes de la vía biliar y cáncer | [ver](05-patologia-gi/trastornos-autoinmunes-via-biliar.md) |
+| Enfermedad de la vesícula biliar y vía biliar | [ver](05-patologia-gi/vesicula-biliar-via-biliar.md) |
+| Trastornos esofágicos estructurales y ERGE | [ver](05-patologia-gi/trastornos-esofagicos-estructurales-erge.md) |
 
 ## Parte 6 — Hematología
 
@@ -85,6 +88,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Policitemia | [ver](06-hematologia/policitemia.md) |
 | Defectos de coagulación adquiridos | [ver](06-hematologia/defectos-coagulacion-adquiridos.md) |
 | Linfoma no-Hodgkin | [ver](06-hematologia/linfoma-no-hodgkin.md) |
+| Trastornos plaquetarios cuantitativos | [ver](06-hematologia/trastornos-plaquetarios-cuantitativos.md) |
 
 ## Parte 7 — Farmacología
 
@@ -108,6 +112,8 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Tetraciclinas | [ver](07-farmacologia/tetraciclinas.md) |
 | Fármacos antituberculosos (RIPE) | [ver](07-farmacologia/farmacos-antituberculosos.md) |
 | Bloqueadores H2 e inhibidores de bomba de protones | [ver](07-farmacologia/bloqueadores-h2-ppi.md) |
+| Monobactámicos y carbapenémicos | [ver](07-farmacologia/monobactamicos-carbapenemicos.md) |
+| Benzodiacepinas y Flumazenil | [ver](07-farmacologia/benzodiazepinas-flumazenil.md) |
 
 ## Parte 8 — Neurología
 
@@ -132,6 +138,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Tema | Archivo |
 |---|---|
 | Trastornos combinados de células B y T | [ver](10-inmunologia/trastornos-combinados-celulas-b-t.md) |
+| Trastornos de células fagocíticas | [ver](10-inmunologia/trastornos-celulas-fagociticas.md) |
 
 ## Parte 11 — Ginecología
 
