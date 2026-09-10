@@ -190,6 +190,12 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 |---|---|
 | Diabetes insípida y SIADH | [ver](15-endocrinologia/diabetes-insipida-siadh.md) |
 
+## Parte 16 — Nefrología
+
+| Tema | Archivo |
+|---|---|
+| Acidosis tubular renal (ATR) | [ver](16-nefrologia/acidosis-tubular-renal.md) |
+
 ---
 
 # 🖼️ Cómo poner las imágenes
