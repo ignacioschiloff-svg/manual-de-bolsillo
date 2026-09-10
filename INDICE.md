@@ -176,12 +176,19 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Sporothrix schenckii | [ver](13-micologia/sporothrix-schenckii.md) |
 | Candida albicans | [ver](13-micologia/candida-albicans.md) |
 | Aspergillus fumigatus | [ver](13-micologia/aspergillus-fumigatus.md) |
+| Mucor & Rhizopus (Mucormicetos) | [ver](13-micologia/mucor-rhizopus.md) |
 
 ## Parte 14 — Oncología
 
 | Tema | Archivo |
 |---|---|
 | Melanoma maligno | [ver](14-oncologia/melanoma-maligno.md) |
+
+## Parte 15 — Endocrinología
+
+| Tema | Archivo |
+|---|---|
+| Diabetes insípida y SIADH | [ver](15-endocrinologia/diabetes-insipida-siadh.md) |
 
 ---
 
