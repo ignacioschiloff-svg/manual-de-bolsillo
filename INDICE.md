@@ -121,6 +121,8 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Simpaticomiméticos indirectos | [ver](07-farmacologia/simpaticomimeticos-indirectos.md) |
 | Simpaticomiméticos | [ver](07-farmacologia/simpaticomimeticos.md) |
 | Beta bloqueadores | [ver](07-farmacologia/beta-blockers.md) |
+| Griseofulvina, terbinafina y equinocandinas | [ver](07-farmacologia/griseofulvina-terbinafina-equinocandinas.md) |
+| Azoles | [ver](07-farmacologia/azoles.md) |
 
 ## Parte 8 — Neurología
 
