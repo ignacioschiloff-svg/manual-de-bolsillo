@@ -166,6 +166,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Entamoeba histolytica | [ver](12-parasitologia/entamoeba-histolytica.md) |
 | Trypanosoma cruzi (enfermedad de Chagas) | [ver](12-parasitologia/trypanosoma-cruzi-chagas.md) |
 | Trypanosoma brucei (enfermedad del sueño africana) | [ver](12-parasitologia/trypanosoma-brucei.md) |
+| Giardia lamblia | [ver](12-parasitologia/giardia-lamblia.md) |
 
 ## Parte 13 — Micología
 
