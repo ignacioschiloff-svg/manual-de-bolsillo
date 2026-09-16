@@ -61,6 +61,14 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Virus de la Rabia (Rhabdoviridae) | [ver](04-virus/rabia.md) |
 | Rotavirus y virus de la fiebre por garrapata de Colorado (Reoviridae) | [ver](04-virus/rotavirus-colorado-tick-fever.md) |
 | Picornaviridae — Visión general | [ver](04-virus/picornaviridae-overview.md) |
+| Poliovirus (Picornaviridae) | [ver](04-virus/poliovirus.md) |
+| Coronavirus (Coronaviridae) | [ver](04-virus/coronavirus.md) |
+| Flaviviridae — Visión general | [ver](04-virus/flaviviridae-overview.md) |
+| Sarampión, paperas, parainfluenza y VRS | [ver](04-virus/paramixovirus-vrs.md) |
+| Viruela, viruela vacuna y molusco contagioso (Poxviridae) | [ver](04-virus/poxviridae.md) |
+| Influenza (Orthomyxoviridae) | [ver](04-virus/influenza.md) |
+| Ébola y Marburgo (Filoviridae) | [ver](04-virus/filoviridae.md) |
+| Parvovirus B19 (Parvoviridae) | [ver](04-virus/parvovirus-b19.md) |
 
 ## Parte 5 — Patología GI y hepática
 
