@@ -45,6 +45,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Borrelia recurrentis | [ver](02-gram-negativas/borrelia-recurrentis.md) |
 | Borrelia burgdorferi | [ver](02-gram-negativas/borrelia-burgdorferi.md) |
 | Leptospira interrogans | [ver](02-gram-negativas/leptospira-interrogans.md) |
+| Bartonella henselae | [ver](02-gram-negativas/bartonella-henselae.md) |
 
 ## Parte 3 — Rickettsias
 
@@ -52,6 +53,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 |---|---|
 | Rickettsia — Visión general | [ver](03-rickettsias/rickettsia-overview.md) |
 | Rickettsia prowazekii | [ver](03-rickettsias/rickettsia-prowazekii.md) |
+| Anaplasma phagocytophilum y Ehrlichia chaffeensis | [ver](03-rickettsias/anaplasma-ehrlichia.md) |
 
 ## Parte 4 — Virus
 
@@ -69,6 +71,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Influenza (Orthomyxoviridae) | [ver](04-virus/influenza.md) |
 | Ébola y Marburgo (Filoviridae) | [ver](04-virus/filoviridae.md) |
 | Parvovirus B19 (Parvoviridae) | [ver](04-virus/parvovirus-b19.md) |
+| Virus de Epstein-Barr (Herpesviridae) | [ver](04-virus/epstein-barr.md) |
 
 ## Parte 5 — Patología GI y hepática
 
@@ -146,6 +149,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Nervio craneal V (Trigémino, correlatos clínicos) | [ver](08-neurologia/nervio-craneal-v.md) |
 | Esclerosis múltiple: evaluación y manejo | [ver](08-neurologia/esclerosis-multiple-evaluacion-manejo.md) |
 | Tumores del SNC pediátricos | [ver](08-neurologia/tumores-snc-pediatricos.md) |
+| Tumores del SNC en adultos | [ver](08-neurologia/tumores-snc-adultos.md) |
 
 ## Parte 9 — Neumología
 
@@ -166,6 +170,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Tema | Archivo |
 |---|---|
 | Tumores ováricos (germinales y estromales) | [ver](11-ginecologia/tumores-ovaricos-germinales-estromales.md) |
+| Trastornos gestacionales | [ver](11-ginecologia/trastornos-gestacionales.md) |
 
 ## Parte 12 — Parasitología
 
@@ -175,6 +180,16 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Trypanosoma cruzi (enfermedad de Chagas) | [ver](12-parasitologia/trypanosoma-cruzi-chagas.md) |
 | Trypanosoma brucei (enfermedad del sueño africana) | [ver](12-parasitologia/trypanosoma-brucei.md) |
 | Giardia lamblia | [ver](12-parasitologia/giardia-lamblia.md) |
+| Trichomonas vaginalis | [ver](12-parasitologia/trichomonas-vaginalis.md) |
+| Cryptosporidium spp. | [ver](12-parasitologia/cryptosporidium.md) |
+| Toxoplasma gondii | [ver](12-parasitologia/toxoplasma-gondii.md) |
+| Babesia spp. | [ver](12-parasitologia/babesia.md) |
+| Plasmodium: especies, ciclo y tratamiento | [ver](12-parasitologia/plasmodium.md) |
+| Leishmania braziliensis y donovani | [ver](12-parasitologia/leishmania.md) |
+| Cestodos (Taenia, Diphyllobothrium, Echinococcus) | [ver](12-parasitologia/cestodos.md) |
+| Trematodos (Schistosoma, Clonorchis, Paragonimus) | [ver](12-parasitologia/trematodos.md) |
+| Nematodos intestinales | [ver](12-parasitologia/nematodos-intestinales.md) |
+| Nematodos tisulares | [ver](12-parasitologia/nematodos-tisulares.md) |
 
 ## Parte 13 — Micología
 
@@ -188,6 +203,8 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Candida albicans | [ver](13-micologia/candida-albicans.md) |
 | Aspergillus fumigatus | [ver](13-micologia/aspergillus-fumigatus.md) |
 | Mucor & Rhizopus (Mucormicetos) | [ver](13-micologia/mucor-rhizopus.md) |
+| Blastomyces dermatitidis | [ver](13-micologia/blastomyces-dermatitidis.md) |
+| Paracoccidioides brasiliensis | [ver](13-micologia/paracoccidioides-brasiliensis.md) |
 
 ## Parte 14 — Oncología
 
@@ -200,12 +217,14 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Tema | Archivo |
 |---|---|
 | Diabetes insípida y SIADH | [ver](15-endocrinologia/diabetes-insipida-siadh.md) |
+| Cetoacidosis diabética y estado hiperosmolar | [ver](15-endocrinologia/cad-ehh.md) |
 
 ## Parte 16 — Nefrología
 
 | Tema | Archivo |
 |---|---|
 | Acidosis tubular renal (ATR) | [ver](16-nefrologia/acidosis-tubular-renal.md) |
+| Nefritis tubulointersticial | [ver](16-nefrologia/nefritis-tubulointersticial.md) |
 
 ---
 
