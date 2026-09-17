@@ -444,6 +444,10 @@ body.en-estudio .estudio { display: block; }
   .panel-img { max-height: 80vh; }
 }
 
+.panel.sin-imagen .panel-img,
+.panel.sin-imagen #btnZoom,
+.panel.sin-imagen #btnPlegar { display: none; }
+
 body.panel-oculto .panel-img { display: none; }
 body.panel-oculto .panel { padding-bottom: 8px; }
 
@@ -767,8 +771,10 @@ function pintarPanel() {
   botones[0].style.display = hayMapa ? "" : "none";
   botones[1].style.display = hayTexto ? "" : "none";
 
-  if (!hayMapa && !hayTexto) { panel.style.display = "none"; return; }
-  panel.style.display = "";
+  // sin imagenes se esconden la foto y sus botones, pero NO la barra: ahi vive
+  // el boton "#" para saltar a un numero, que sigue siendo util
+  panel.classList.toggle("sin-imagen", !hayMapa && !hayTexto);
+  if (!hayMapa && !hayTexto) return;
 
   if (vistaImg === "mapa" && !hayMapa) vistaImg = "texto";
   if (vistaImg === "texto" && !hayTexto) vistaImg = "mapa";
@@ -1014,6 +1020,8 @@ campo.addEventListener("input", () => { clearTimeout(pendiente); pendiente = set
 document.getElementById("limpiar").addEventListener("click", () => { campo.value = ""; campo.focus(); buscar(); });
 
 /* abrir directo si la URL trae un tema */
+// push:false porque la URL YA es la del tema; si se apilara otra entrada,
+// el boton atras del navegador volveria al mismo tema y no saldria nunca
 const inicial = decodeURIComponent(location.hash.slice(1));
-if (inicial && porSlug[inicial]) abrirTema(inicial);
+if (inicial && porSlug[inicial]) abrirTema(inicial, { push: false });
 </script>
