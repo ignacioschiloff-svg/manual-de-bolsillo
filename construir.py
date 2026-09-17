@@ -7,7 +7,8 @@ Construye el Manual de Bolsillo en dos formatos a partir de los archivos .md:
                        normales junto al HTML, sin limite de tamano, mas
                        nitidas y con cache del navegador).
 
-Uso:  python construir.py
+Uso:  python construir.py              -> solo la version web (docs/, GitHub Pages)
+      python construir.py --artifact   -> ademas genera sketchy.html para el Artifact
 
 Para anadir un Sketchy nuevo:
   1. Crea su archivo .md en la carpeta de su Parte.
@@ -122,6 +123,10 @@ def comprimir_data_uri(ruta, tope_bytes):
 
 def exportar_archivo_web(ruta, destino):
     """Para GitHub Pages: guarda un .webp de alta calidad como archivo suelto."""
+    # si el .webp ya existe y es mas nuevo que la original, no se vuelve a
+    # comprimir: con 200+ imagenes eso era casi todo el tiempo del armado
+    if destino.exists() and destino.stat().st_mtime >= ruta.stat().st_mtime:
+        return destino.stat().st_size
     img = cargar_imagen(ruta)
     if img.width > ANCHO_WEB:
         alto = round(img.height * ANCHO_WEB / img.width)
@@ -226,16 +231,8 @@ def envolver_web(html):
 """
 
 
-def construir():
-    IMGS.mkdir(exist_ok=True)
-    partes, n_img = recolectar()
-    n_temas = sum(len(p["temas"]) for p in partes)
-    n_items = sum(len(t["items"]) for p in partes for t in p["temas"])
-    plantilla = (BASE / "plantilla.html").read_text(encoding="utf-8")
-
-    faltan = [t["slug"] for p in partes for t in p["temas"] if not (t["_mapa"] and t["_texto"])]
-
-    # ========== 1) VERSION ARTIFACT (sketchy.html, base64, con presupuesto) ==========
+def construir_artifact(partes, n_img, n_temas, n_items, plantilla):
+    """Copia de un solo archivo para el Artifact de Claude (imagenes incrustadas, tope 16 MB)."""
     tope = max(TOPE_MIN_ARTIFACT, min(TOPE_MAX_ARTIFACT, PRESUPUESTO_ARTIFACT // n_img)) if n_img else TOPE_MAX_ARTIFACT
 
     partes_artifact = json.loads(json.dumps(partes, default=lambda o: None))  # copia sin los Path
@@ -252,7 +249,28 @@ def construir():
     destino_artifact.write_text(salida_artifact, encoding="utf-8")
     mb_artifact = destino_artifact.stat().st_size / 1_048_576
 
-    # ========== 2) VERSION WEB (docs/, archivos sueltos, sin limite) ==========
+    print(f"Artifact -> sketchy.html")
+    print(f"  {n_img} imagenes | {tope // 1000} KB c/u | peso total: {mb_artifact:.2f} MB de 16 MB")
+    if mb_artifact > 15:
+        print("  AVISO: cerca del limite. Baja PRESUPUESTO_ARTIFACT.")
+    print()
+
+
+def construir(con_artifact=False):
+    IMGS.mkdir(exist_ok=True)
+    partes, n_img = recolectar()
+    n_temas = sum(len(p["temas"]) for p in partes)
+    n_items = sum(len(t["items"]) for p in partes for t in p["temas"])
+    plantilla = (BASE / "plantilla.html").read_text(encoding="utf-8")
+
+    faltan = [t["slug"] for p in partes for t in p["temas"] if not (t["_mapa"] and t["_texto"])]
+
+    # el manual se estudia en GitHub Pages; la copia para el Artifact comprime
+    # cada imagen para caber en 16 MB y es la parte mas lenta, asi que es opcional
+    if con_artifact:
+        construir_artifact(partes, n_img, n_temas, n_items, plantilla)
+
+    # ========== VERSION WEB (docs/, archivos sueltos, sin limite) ==========
     docs_img = DOCS / "imagenes"
     docs_img.mkdir(parents=True, exist_ok=True)
 
@@ -273,12 +291,7 @@ def construir():
     salida_web = envolver_web(render_html(plantilla, partes_web, n_temas, n_items))
     (DOCS / "index.html").write_text(salida_web, encoding="utf-8")
 
-    print(f"Artifact -> sketchy.html")
-    print(f"  {n_img} imagenes | {tope // 1000} KB c/u | peso total: {mb_artifact:.2f} MB de 16 MB")
-    if mb_artifact > 15:
-        print("  AVISO: cerca del limite. Baja PRESUPUESTO_ARTIFACT.")
-
-    print(f"\nWeb (GitHub Pages) -> docs/")
+    print(f"Web (GitHub Pages) -> docs/")
     print(f"  {n_img} imagenes a {ANCHO_WEB}px | peso imagenes: {peso_web / 1_048_576:.1f} MB (sin limite)")
 
     print(f"\n{len(partes)} partes | {n_temas} temas | {n_items} elementos")
@@ -287,4 +300,5 @@ def construir():
 
 
 if __name__ == "__main__":
-    construir()
+    import sys
+    construir(con_artifact="--artifact" in sys.argv)

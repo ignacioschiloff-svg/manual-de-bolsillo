@@ -698,24 +698,31 @@ const porSlug = {};
     el.scrollLeft += ev.deltaY !== 0 ? ev.deltaY : ev.deltaX;
   }, { passive: false });
 
-  let arrastrando = false, movio = false, x0 = 0, left0 = 0;
+  // arrastre solo con mouse: en pantallas tactiles el navegador ya desliza la
+  // fila de forma nativa. La captura del puntero se toma recien cuando el
+  // mouse se movio de verdad; si se tomaba al apoyar, el click quedaba en la
+  // barra y tocar un chip directo no navegaba a ningun lado.
+  let apretado = false, movio = false, x0 = 0, left0 = 0;
   el.addEventListener("pointerdown", ev => {
+    if (ev.pointerType !== "mouse" || ev.button !== 0) return;
     if (el.scrollWidth <= el.clientWidth) return;
-    arrastrando = true; movio = false;
+    apretado = true; movio = false;
     x0 = ev.clientX; left0 = el.scrollLeft;
-    el.setPointerCapture(ev.pointerId);
   });
   el.addEventListener("pointermove", ev => {
-    if (!arrastrando) return;
+    if (!apretado) return;
     const dx = ev.clientX - x0;
-    if (Math.abs(dx) > 4) movio = true;
-    el.scrollLeft = left0 - dx;
+    if (!movio && Math.abs(dx) > 6) {
+      movio = true;
+      try { el.setPointerCapture(ev.pointerId); } catch {}
+    }
+    if (movio) el.scrollLeft = left0 - dx;
   });
-  const soltar = () => { arrastrando = false; };
+  const soltar = () => { apretado = false; };
   el.addEventListener("pointerup", soltar);
-  el.addEventListener("pointercancel", soltar);
+  el.addEventListener("pointercancel", () => { apretado = false; movio = false; });
   el.addEventListener("click", ev => {
-    if (movio) { ev.preventDefault(); movio = false; }
+    if (movio) { ev.preventDefault(); ev.stopPropagation(); movio = false; }
   }, true);
 })(chips);
 
