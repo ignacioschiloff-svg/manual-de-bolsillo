@@ -24,7 +24,13 @@ import io
 import json
 import re
 import shutil
+import sys
 from pathlib import Path
+
+# la consola de Windows usa cp1252 y rompia los acentos del resumen final
+# ("tromboliticos" salia con un rombo negro en vez de la "i" con tilde)
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 BASE = Path(__file__).parent
 IMGS = BASE / "imagenes"

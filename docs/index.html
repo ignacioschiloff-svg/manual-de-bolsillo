@@ -679,7 +679,9 @@ function pintarItem(item, termino) {
     const cls = clave === "literal" ? "paso literal" : "paso";
     return `<div class="${cls}"><span class="lbl"><span class="em">${emoji}</span>${etiqueta}</span>${parrafos(item[clave], termino)}</div>`;
   }).join("");
-  return `<article class="item" id="it-${esc(item.n)}" data-n="${esc(item.n)}">
+  // sin id: el mismo numero se repite en cada tema y, con los resultados de
+  // busqueda en pantalla, quedaban decenas de id duplicados en el documento
+  return `<article class="item" data-n="${esc(item.n)}">
       <div class="item-head"><span class="num">${esc(item.n)}</span><span class="titulo">${resaltar(item.nombre, termino)}</span></div>
       ${pasos}
     </article>`;
@@ -786,7 +788,13 @@ function pintarPanel() {
   // sin imagenes se esconden la foto y sus botones, pero NO la barra: ahi vive
   // el boton "#" para saltar a un numero, que sigue siendo util
   panel.classList.toggle("sin-imagen", !hayMapa && !hayTexto);
-  if (!hayMapa && !hayTexto) return;
+  if (!hayMapa && !hayTexto) {
+    // hay que soltar la imagen del tema anterior: aunque el CSS la esconda,
+    // el navegador la sigue teniendo cargada y el visor la podria abrir
+    panelImg.removeAttribute("src");
+    panelImg.alt = "";
+    return;
+  }
 
   if (vistaImg === "mapa" && !hayMapa) vistaImg = "texto";
   if (vistaImg === "texto" && !hayTexto) vistaImg = "mapa";
@@ -799,6 +807,9 @@ function pintarPanel() {
 function abrirTema(slug, { push = true } = {}) {
   const reg = porSlug[slug];
   if (!reg) return;
+  // si ya estas parado en ese tema no hay que redibujar ni saltar al principio:
+  // pasa al cerrar el zoom con el boton atras, y perdias el renglon que leias
+  if (reg.tema === temaActual && document.body.classList.contains("en-estudio")) return;
   if (!document.body.classList.contains("en-estudio")) scrollLista = window.scrollY;
   temaActual = reg.tema;
   vistaImg = reg.tema.mapa ? "mapa" : "texto";
@@ -827,14 +838,32 @@ function cerrarTema() {
   window.scrollTo(0, scrollLista);
 }
 
-document.getElementById("volver").addEventListener("click", () => { history.back(); });
+// Salir del tema NO es siempre "atras": si abriste el manual con un link
+// directo a un tema (#adenovirus), esa vista es la primera del historial y
+// history.back() te saca del sitio entero. En ese caso hay que cerrar a mano
+// y limpiar el hash. La entrada inicial se marca con state.raiz al cargar.
+function salirDeTema() {
+  if (history.state && history.state.raiz) {
+    history.replaceState({ raiz: true }, "", location.pathname + location.search);
+    cerrarTema();
+  } else {
+    history.back();
+  }
+}
+
+document.getElementById("volver").addEventListener("click", salirDeTema);
 
 document.querySelector(".brand h1").addEventListener("click", () => {
-  if (document.body.classList.contains("en-estudio")) history.back();
+  if (document.body.classList.contains("en-estudio")) salirDeTema();
   else window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 window.addEventListener("popstate", () => {
+  // con el zoom abierto, "atras" cierra el zoom y nada mas: antes se salia del
+  // tema con el visor encima y el body trabado en overflow:hidden, o sea que
+  // la lista quedaba tapada y sin poder desplazarse
+  if (visor.hasAttribute("data-abierto")) { cerrarVisor({ desdeHistorial: true }); return; }
+
   // ojo: un simple <a href="#p0"> de los chips TAMBIEN dispara popstate
   // (sin ev.state), asi que no basta con mirar ev.state: hay que fijarse
   // en el hash real. Si no es el slug de un tema y no estamos en la vista
@@ -955,11 +984,18 @@ function abrirVisor(src, alt) {
   document.body.style.overflow = "hidden";
   visor.scrollTop = 0;
   visor.scrollLeft = (visor.scrollWidth - visor.clientWidth) / 2;
+  // el zoom ocupa su propia entrada de historial para que el boton "atras"
+  // del celular lo cierre en lugar de sacarte del tema
+  history.pushState({ visor: true, slug: temaActual ? temaActual.slug : null }, "", location.hash || " ");
 }
-function cerrarVisor() {
+function cerrarVisor({ desdeHistorial = false } = {}) {
+  if (!visor.hasAttribute("data-abierto")) return;
   visor.removeAttribute("data-abierto");
   visorImg.src = "";
   document.body.style.overflow = "";
+  // si lo cerro el usuario (X, Escape o clic afuera) hay que sacar tambien la
+  // entrada que apilo el zoom; si vino del boton atras, el navegador ya la saco
+  if (!desdeHistorial && history.state && history.state.visor) history.back();
 }
 
 panelImg.addEventListener("click", () => abrirVisor(panelImg.src, panelImg.alt));
@@ -971,7 +1007,7 @@ document.addEventListener("keydown", ev => {
   if (ev.key === "Escape") {
     if (visor.hasAttribute("data-abierto")) cerrarVisor();
     else if (!cajaNums.hidden) { cerrarNums(); btnNums.focus(); }
-    else if (document.body.classList.contains("en-estudio")) history.back();
+    else if (document.body.classList.contains("en-estudio")) salirDeTema();
   }
 });
 
@@ -1032,6 +1068,11 @@ campo.addEventListener("input", () => { clearTimeout(pendiente); pendiente = set
 document.getElementById("limpiar").addEventListener("click", () => { campo.value = ""; campo.focus(); buscar(); });
 
 /* abrir directo si la URL trae un tema */
+// Se marca la entrada actual como "raiz": es la primera del historial de esta
+// pestaña, asi que salirDeTema() sabe que aca no puede usar history.back()
+// (te sacaria del manual) y tiene que cerrar el tema a mano.
+history.replaceState({ raiz: true }, "", location.href);
+
 // push:false porque la URL YA es la del tema; si se apilara otra entrada,
 // el boton atras del navegador volveria al mismo tema y no saldria nunca
 const inicial = decodeURIComponent(location.hash.slice(1));
