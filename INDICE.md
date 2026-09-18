@@ -71,6 +71,7 @@ Cada tema tiene su propio archivo. Este índice es el mapa de todo.
 | Influenza (Orthomyxoviridae) | [ver](04-virus/influenza.md) |
 | Ébola y Marburgo (Filoviridae) | [ver](04-virus/filoviridae.md) |
 | Parvovirus B19 (Parvoviridae) | [ver](04-virus/parvovirus-b19.md) |
+| Adenovirus (Adenoviridae) | [ver](04-virus/adenovirus.md) |
 | Coriomeningitis linfocítica — LCMV (Arenaviridae) | [ver](04-virus/lcmv-arenaviridae.md) |
 | Hantavirus, encefalitis de California y fiebre del Valle del Rift (Bunyaviridae) | [ver](04-virus/bunyaviridae.md) |
 | Virus de Epstein-Barr (Herpesviridae) | [ver](04-virus/epstein-barr.md) |
